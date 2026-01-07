@@ -156,6 +156,19 @@
   </div>
 </div>
 
+  <!-- CART MODAL -->
+<div id="cart-modal" class="modal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeCart()">×</button>
+
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+
+    <button class="main-btn" onclick="checkoutTelegram()">Checkout</button>
+  </div>
+</div>
+
+
   <!-- FOOTER -->
 <footer class="footer">
 
@@ -205,10 +218,10 @@
 
 <!-- BOTTOM NAV -->
 <nav class="bottom-nav">
-  <button onclick="scrollToTop()">Shop</button>
+  <button onclick="openCart()">Shop</button>
   <button>Search</button>
   <button>Wishlist</button>
-  <button>Cart</button>
+  Cart <span id="cart-count">(0)</span>
 </nav>
 
 <script src="script.js"></script>
