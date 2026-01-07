@@ -183,25 +183,6 @@ main {
   object-fit: contain;
 }
 
-@keyframes scrollPartners {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-/* PARTNERS */
-.partners {
-  overflow: hidden;
-  padding: 30px 0;
-  background: #fff;
-}
-
-.partners-track {
-  display: flex;
-  gap: 50px;
-  width: max-content;
-  animation: scrollPartners 25s linear infinite;
-}
-
 .partners-track img {
   height: 40px;
   opacity: 0.6;
@@ -212,3 +193,77 @@ main {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
+
+/* FOOTER 1:1 */
+.footer {
+  background: #f6f6f4;
+  padding: 40px 20px 120px;
+  color: #1f3d2b;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+}
+
+.footer-logo {
+  width: 120px; /* маленький как на сайте */
+  display: block;
+  margin-bottom: 30px;
+}
+
+.footer-info p {
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 8px 0;
+}
+
+.footer-info a {
+  color: #1f3d2b;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-direction {
+  display: inline-block;
+  margin-top: 14px;
+  font-weight: 600;
+  border-bottom: 1px solid #1f3d2b;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 16px;
+  margin: 26px 0;
+}
+
+.footer-socials a {
+  width: 42px;
+  height: 42px;
+  border: 1px solid #1f3d2b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #1f3d2b;
+  font-size: 18px;
+}
+
+.footer-accordion {
+  border-top: 1px solid #ddd;
+  margin-top: 24px;
+}
+
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 0;
+  border-bottom: 1px solid #ddd;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.footer-copy {
+  text-align: center;
+  font-size: 13px;
+  opacity: 0.7;
+  margin-top: 30px;
+}
+
