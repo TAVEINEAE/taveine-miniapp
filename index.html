@@ -14,53 +14,20 @@
   <img src="logo.png" class="logo" alt="TAVEINE Logo" />
   <div class="spacer"></div>
 </header>
-  
+
 <!-- SIDE MENU -->
 <div id="side-menu" class="side-menu">
   <div class="side-header">
     <button class="close-menu" onclick="toggleMenu()">×</button>
   </div>
 
-  <!-- COLLECTION -->
   <div class="menu-block">
     <div class="menu-title" onclick="toggleSub('collection')">
       Collection <span id="icon-collection">+</span>
     </div>
     <div id="collection" class="submenu">
       <a onclick="renderProducts('christmas','Christmas Collection')">Christmas Collection</a>
-      <a onclick="renderProducts('spring','Spring Collection')">Spring</a>
-      <a onclick="renderProducts('new','New Arrivals')">New Arrivals</a>
-      <a onclick="renderProducts('best','Best Sellers')">Best Sellers</a>
       <a onclick="renderProducts('luxury','Luxury Collection')">Luxury</a>
-      <a onclick="renderProducts('specialty','Specialty Collection')">Specialty</a>
-      <a onclick="renderProducts('jetaime','Je t’aime Collection')">Je t’aime Collection</a>
-      <a onclick="renderProducts('vases','Vases')">Vases</a>
-      <a onclick="renderProducts('box','Box Collection')">Box</a>
-    </div>
-  </div>
-
-  <!-- OCCASIONS -->
-  <div class="menu-block">
-    <div class="menu-title" onclick="toggleSub('occasions')">
-      Occasions <span id="icon-occasions">+</span>
-    </div>
-    <div id="occasions" class="submenu">
-      <a onclick="renderProducts('anniversary','Anniversary')">Anniversary</a>
-      <a onclick="renderProducts('birthday','Birthday')">Birthday</a>
-      <a onclick="renderProducts('sorry','I’m Sorry')">I’m Sorry</a>
-      <a onclick="renderProducts('newbaby','New Baby')">New Baby</a>
-    </div>
-  </div>
-
-  <!-- HOME -->
-  <div class="menu-block">
-    <div class="menu-title" onclick="toggleSub('home')">
-      Home <span id="icon-home">+</span>
-    </div>
-    <div id="home" class="submenu">
-      <a href="#">About Us</a>
-      <a href="#">Privacy Policy</a>
-      <a href="#">Event Design Services</a>
     </div>
   </div>
 </div>
@@ -69,159 +36,94 @@
 
   <!-- HERO -->
   <section class="hero">
-    <img src="hero.jpg" alt="TAVEINE Hero Image">
+    <img src="hero.jpg" alt="TAVEINE Hero">
   </section>
 
-  <!-- SLIDER 4 ITEMS -->
+  <!-- SLIDER -->
   <section class="section">
     <h2>Christmas Collection</h2>
-
     <div class="slider">
+
       <div class="card" onclick="openProduct('Snowfall Serenity','620 AED','p1.jpg')">
-        <img src="p1.jpg" alt="Snowfall Serenity">
+        <img src="p1.jpg">
+        <button class="heart-btn" onclick="toggleWishlist('Snowfall Serenity','620 AED','p1.jpg', this); event.stopPropagation()">♥</button>
         <h4>Snowfall Serenity</h4>
         <span>620 AED</span>
       </div>
 
       <div class="card" onclick="openProduct('Winter Harmony Bowl','580 AED','p2.jpg')">
-        <img src="p2.jpg" alt="Winter Harmony Bowl">
+        <img src="p2.jpg">
+        <button class="heart-btn" onclick="toggleWishlist('Winter Harmony Bowl','580 AED','p2.jpg', this); event.stopPropagation()">♥</button>
         <h4>Winter Harmony Bowl</h4>
         <span>580 AED</span>
       </div>
 
       <div class="card" onclick="openProduct('Golden Pine','640 AED','p3.jpg')">
-        <img src="p3.jpg" alt="Golden Pine">
+        <img src="p3.jpg">
+        <button class="heart-btn" onclick="toggleWishlist('Golden Pine','640 AED','p3.jpg', this); event.stopPropagation()">♥</button>
         <h4>Golden Pine</h4>
         <span>640 AED</span>
       </div>
 
       <div class="card" onclick="openProduct('Evergreen Glow','600 AED','p4.jpg')">
-        <img src="p4.jpg" alt="Evergreen Glow">
+        <img src="p4.jpg">
+        <button class="heart-btn" onclick="toggleWishlist('Evergreen Glow','600 AED','p4.jpg', this); event.stopPropagation()">♥</button>
         <h4>Evergreen Glow</h4>
         <span>600 AED</span>
       </div>
+
     </div>
   </section>
 
-  <!-- TEXT -->
-  <section class="text-block">
-    <h3>TAVÉINE’s Favorites</h3>
-    <p>Beautifully Arranged. Thoughtfully Curated. Naturally Inspired.</p>
-  </section>
-
-  <!-- GRID 2x2 (same size as slider cards) -->
+  <!-- GRID -->
   <section class="grid">
     <div class="grid-card" onclick="openProduct('Pink Roses','950 AED','g1.jpg')">
-      <img src="g1.jpg" alt="Pink Roses">
+      <img src="g1.jpg">
+      <button class="heart-btn" onclick="toggleWishlist('Pink Roses','950 AED','g1.jpg', this); event.stopPropagation()">♥</button>
     </div>
     <div class="grid-card" onclick="openProduct('Ivory Roses','950 AED','g2.jpg')">
-      <img src="g2.jpg" alt="Ivory Roses">
-    </div>
-    <div class="grid-card" onclick="openProduct('Lilac Roses','990 AED','g3.jpg')">
-      <img src="g3.jpg" alt="Lilac Roses">
-    </div>
-    <div class="grid-card" onclick="openProduct('Rose Gold','990 AED','g4.jpg')">
-      <img src="g4.jpg" alt="Rose Gold">
+      <img src="g2.jpg">
+      <button class="heart-btn" onclick="toggleWishlist('Ivory Roses','950 AED','g2.jpg', this); event.stopPropagation()">♥</button>
     </div>
   </section>
-  
-<!-- PARTNERS -->
-<section class="partners">
-  <div class="partners-track">
-    <img src="partner1.png" alt="Partner 1">
-    <img src="partner2.png" alt="Partner 2">
-    <img src="partner3.png" alt="Partner 3">
-    <img src="partner4.png" alt="Partner 4">
-    <img src="partner5.png" alt="Partner 5">
-
-    <!-- дублируем для бесконечной анимации -->
-    <img src="partner1.png">
-    <img src="partner2.png">
-    <img src="partner3.png">
-    <img src="partner4.png">
-    <img src="partner5.png">
-  </div>
-</section>
 
 </main>
 
 <!-- PRODUCT MODAL -->
 <div id="product-modal" class="modal">
   <div class="modal-content">
-    <button class="close-btn" onclick="closeProduct()" aria-label="Close">×</button>
-    <img id="modal-img" alt="Product Image">
+    <button class="close-btn" onclick="closeProduct()">×</button>
+    <img id="modal-img">
     <h2 id="modal-title"></h2>
     <p id="modal-price"></p>
     <button class="main-btn" onclick="addToCart()">Add to Cart</button>
   </div>
 </div>
 
-  <!-- CART MODAL -->
+<!-- CART MODAL -->
 <div id="cart-modal" class="modal">
   <div class="modal-content">
     <button class="close-btn" onclick="closeCart()">×</button>
-
     <h2>Your Cart</h2>
     <div id="cart-items"></div>
-
     <button class="main-btn" onclick="checkoutTelegram()">Checkout</button>
   </div>
 </div>
 
-
-  <!-- FOOTER -->
-<footer class="footer">
-
-  <img src="logo.png" class="footer-logo" alt="TAVEINE Logo">
-
-  <div class="footer-info">
-    <p>
-      Address: International City,<br>
-      Dubai, UAE
-    </p>
-
-    <p>
-      Email:
-      <a href="mailto:support@taveine.com">support@taveine.com</a>
-    </p>
-
-    <p>
-      Phone:<br>
-      <strong>971 58 574 37 06</strong>
-    </p>
-
-    <a class="footer-direction"
-       href="https://maps.google.com/?q=International+City+Dubai"
-       target="_blank">
-      Get direction ↗
-    </a>
+<!-- WISHLIST MODAL -->
+<div id="wishlist-modal" class="modal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeWishlist()">×</button>
+    <h2>Your Wishlist</h2>
+    <div id="wishlist-items"></div>
   </div>
-
-  <div class="footer-socials">
-    <a href="https://www.facebook.com/share/17hhNCfDje/?mibextid=wwXIfr" target="_blank" aria-label="Facebook">f</a>
-    <a href="https://www.instagram.com/taveine.ae" target="_blank" aria-label="Instagram">◎</a>
-    <a href="https://www.taveine.com" target="_blank" aria-label="Website">⌘</a>
-  </div>
-
-  <div class="footer-accordion">
-    <div class="footer-row">Help <span>+</span></div>
-    <div class="footer-row">Useful Links <span>+</span></div>
-    <div class="footer-row">Sign Up for Email <span>+</span></div>
-  </div>
-
-  <div class="footer-copy">
-    © TAVÉINE Flower Shop. All Rights Reserved.
-  </div>
-
-</footer>
-
+</div>
 
 <!-- BOTTOM NAV -->
 <nav class="bottom-nav">
-  <button onclick="openCart()">Shop</button>
-  <button>Search</button>
-  <button>Wishlist</button>
-  Cart <span id="cart-count">(0)</span>
+  <button onclick="scrollToTop()">Shop</button>
+  <button onclick="openWishlist()">Wishlist <span id="wishlist-count">(0)</span></button>
+  <button onclick="openCart()">Cart <span id="cart-count">(0)</span></button>
 </nav>
 
 <script src="script.js"></script>
