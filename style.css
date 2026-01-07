@@ -11,11 +11,11 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: 56px;
-  display: flex;
+  height: 72px;
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 14px;
+  padding: 0 12px;
   background: #fff;
   border-bottom: 1px solid #eee;
   z-index: 10;
