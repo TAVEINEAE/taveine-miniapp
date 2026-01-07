@@ -87,3 +87,71 @@ function renderProducts(category, sectionTitle) {
   toggleMenu();
   scrollToTop();
 }
+
+// ================= CART =================
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+updateCartCount();
+
+function addToCart() {
+  cart.push({
+    name: title.textContent,
+    price: price.textContent
+  });
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateCartCount();
+  alert("Added to cart 🌸");
+}
+
+function updateCartCount() {
+  const count = document.getElementById("cart-count");
+  if (count) count.textContent = `(${cart.length})`;
+}
+
+function openCart() {
+  const modal = document.getElementById("cart-modal");
+  const list = document.getElementById("cart-items");
+
+  list.innerHTML = "";
+
+  cart.forEach((item, index) => {
+    list.innerHTML += `
+      <div class="cart-item">
+        <span>${item.name}</span>
+        <span>${item.price}</span>
+      </div>
+    `;
+  });
+
+  modal.style.display = "flex";
+}
+
+function closeCart() {
+  document.getElementById("cart-modal").style.display = "none";
+}
+
+// ================= TELEGRAM CHECKOUT =================
+function checkoutTelegram() {
+  if (cart.length === 0) {
+    alert("Cart is empty");
+    return;
+  }
+
+  const tg = window.Telegram.WebApp;
+
+  const order = {
+    items: cart,
+    total_items: cart.length
+  };
+
+  tg.sendData(JSON.stringify(order));
+
+  alert("Order sent to Telegram ✅");
+
+  cart = [];
+  localStorage.removeItem("cart");
+  updateCartCount();
+  closeCart();
+}
+
