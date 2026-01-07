@@ -56,8 +56,8 @@ body {
 
 /* PRODUCTS GRID (LIKE SITE) */
 .products {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: горизонталь;
+  grid-template-columns:repeat(2, 2fr);
   gap: 14px;
   padding: 0 14px 30px;
 }
@@ -94,7 +94,7 @@ body {
 }
 
 .bottom-nav button {
-  flex: 1;
+  flex: 2;
   background: none;
   border: none;
   font-size: 12px;
