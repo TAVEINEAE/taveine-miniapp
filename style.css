@@ -1,4 +1,3 @@
-/* RESET */
 * {
   box-sizing: border-box;
 }
@@ -10,18 +9,16 @@ body {
   color: #111;
 }
 
-/* =====================
-   TOP BAR
-===================== */
+/* ================= TOP BAR ================= */
 .top-bar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 64px;
+  height: 56px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 0 16px;
   background: #fff;
   border-bottom: 1px solid #eee;
@@ -29,200 +26,131 @@ body {
 }
 
 .menu-btn {
-  position: absolute;
-  left: 16px;
   font-size: 22px;
   background: none;
   border: none;
-  cursor: pointer;
 }
 
 .logo {
-  height: 70px; /* ЛОГОТИП БОЛЬШЕ */
+  height: 34px;
 }
 
 .spacer {
   width: 24px;
 }
 
-/* =====================
-   MAIN
-===================== */
+/* ================= MAIN ================= */
 main {
   padding-top: 70px;
-  padding-bottom: 90px;
+  padding-bottom: 80px;
 }
 
-/* =====================
-   HERO
-===================== */
+/* ================= HERO ================= */
 .hero img {
   width: 100%;
-  height: auto;
+  height: 260px;
+  object-fit: cover;
   display: block;
 }
 
-/* =====================
-   SECTION
-===================== */
+/* ================= SECTION ================= */
 .section {
-  padding: 24px 16px 8px;
+  padding: 16px;
 }
 
 .section h2 {
-  font-size: 22px;
-  margin-bottom: 16px;
+  font-size: 20px;
+  margin-bottom: 12px;
 }
 
-/* =====================
-   SLIDER (4–5 ITEMS, SWIPE)
-===================== */
+/* ================= SLIDER ================= */
 .slider {
   display: flex;
-  gap: 14px;
+  gap: 12px;
   overflow-x: auto;
   padding-bottom: 10px;
-  scroll-snap-type: x mandatory;
 }
 
 .slider::-webkit-scrollbar {
   display: none;
 }
 
-.slider .card {
-  min-width: 150px;
-  scroll-snap-align: start;
+.card {
+  min-width: 140px;
+  flex-shrink: 0;
   text-align: center;
 }
 
-.slider img {
+.card img {
   width: 100%;
+  height: 140px;
+  object-fit: contain;
+  background: #f7f7f7;
   border-radius: 12px;
 }
 
-.slider h4 {
-  margin: 10px 0 4px;
+.card h4 {
   font-size: 14px;
+  margin: 8px 0 4px;
 }
 
-.slider span {
+.card span {
   font-size: 13px;
   color: #555;
 }
 
-/* =====================
-   TEXT BLOCK
-===================== */
+/* ================= TEXT BLOCK ================= */
 .text-block {
-  padding: 32px 20px;
   text-align: center;
+  padding: 20px 16px;
 }
 
 .text-block h3 {
   font-size: 22px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .text-block p {
-  font-size: 15px;
+  font-size: 14px;
   color: #555;
 }
 
-/* =====================
-   GRID 2x2
-===================== */
+/* ================= GRID 2x2 ================= */
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  padding: 0 16px 32px;
+  gap: 12px;
+  padding: 16px;
 }
 
 .grid-item {
   background: #f7f7f7;
-  height: 180px;
-  border-radius: 12px;
-}
-
-/* =====================
-   POSTER
-===================== */
-.poster img {
-  width: 100%;
-  display: block;
-}
-
-/* =====================
-   PARTNERS (ANIMATION)
-===================== */
-.partners {
+  border-radius: 14px;
   overflow: hidden;
-  padding: 20px 0;
-  background: #fff;
 }
 
-.marquee {
-  display: flex;
-  gap: 40px;
-  animation: scroll 18s linear infinite;
+.grid-item img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
 }
 
-.marquee span {
-  font-size: 24px;
-  font-weight: 600;
-  color: #1b3a2f;
-  white-space: nowrap;
-}
-
-@keyframes scroll {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-/* =====================
-   FOOTER
-===================== */
-.footer {
-  padding: 32px 20px 40px;
-  text-align: center;
-  font-size: 14px;
-  color: #444;
-}
-
-.footer .socials {
-  margin-top: 12px;
-}
-
-.footer .socials a {
-  margin: 0 8px;
-  text-decoration: none;
-  color: #1b3a2f;
-  font-weight: 500;
-}
-
-/* =====================
-   BOTTOM NAV
-===================== */
+/* ================= BOTTOM NAV ================= */
 .bottom-nav {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 72px;
+  height: 64px;
   background: #fff;
   border-top: 1px solid #eee;
   display: flex;
-  z-index: 100;
 }
 
 .bottom-nav button {
   flex: 1;
   border: none;
   background: none;
-  font-size: 12px;
-  color: #1b3a2f;
+  font-size: 13px;
+  color: #333;
 }
