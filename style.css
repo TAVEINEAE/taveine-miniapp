@@ -23,7 +23,7 @@ body {
   padding: 0 14px;
   background: #fff;
   border-bottom: 1px solid #eee;
-  z-index: 100;
+  z-index: 1000;
 }
 
 .menu-btn {
@@ -47,7 +47,7 @@ body {
 /* ================= MAIN ================= */
 main,
 #content {
-  padding-top: 110px;
+  padding-top: 90px;     /* ✔ FIX */
   padding-bottom: 90px;
 }
 
@@ -81,16 +81,17 @@ main,
 }
 
 .card {
-  min-width: 150px;
+  min-width: 160px;
   scroll-snap-align: start;
   text-align: center;
 }
 
 .card img {
   width: 100%;
-  height: 150px;
-  object-fit: contain;
-  border-radius: 12px;
+  height: 170px;
+  object-fit: cover;            /* ✔ как на сайте */
+  border-radius: 14px;
+  background: #f4f4f4;
 }
 
 .card h4 {
@@ -103,14 +104,13 @@ main,
   color: #555;
 }
 
-/* ================= HEART BUTTON ================= */
+/* ================= HEART ================= */
 .heart-btn {
   background: none;
   border: none;
   font-size: 20px;
   color: #bbb;
   cursor: pointer;
-  margin-top: 6px;
 }
 
 .heart-btn.active {
@@ -125,52 +125,40 @@ main,
   padding: 16px;
 }
 
-.grid-card {
-  text-align: center;
-}
-
 .grid-card img {
   width: 100%;
-  height: 170px;
-  object-fit: contain;
-  border-radius: 12px;
-}
-
-.grid-card h4 {
-  font-size: 14px;
-  margin: 8px 0 4px;
-}
-
-.grid-card span {
-  font-size: 13px;
-  color: #555;
+  height: 190px;
+  object-fit: cover;             /* ✔ */
+  border-radius: 14px;
+  background: #f4f4f4;
 }
 
 /* ================= MODAL ================= */
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.6);
+  background: rgba(0,0,0,.55);
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 200;
+  z-index: 2000;
 }
 
 .modal-content {
   background: #fff;
-  width: 90%;
-  max-width: 360px;
-  padding: 20px;
-  border-radius: 14px;
+  width: 92%;
+  max-width: 380px;
+  padding: 22px;
+  border-radius: 16px;
   text-align: center;
   position: relative;
 }
 
 .modal-content img {
   width: 100%;
-  height: 220px;
-  object-fit: contain;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 12px;
 }
 
 .close-btn {
@@ -190,24 +178,18 @@ main,
   border: none;
   padding: 14px;
   width: 100%;
-  border-radius: 10px;
+  border-radius: 12px;
   margin-top: 14px;
   font-size: 15px;
 }
 
-/* ================= CART / WISHLIST ITEMS ================= */
+/* ================= CART / WISHLIST ================= */
 .cart-item {
   display: flex;
   gap: 12px;
   align-items: center;
   margin-bottom: 12px;
   font-size: 14px;
-}
-
-.cart-item img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
 }
 
 /* ================= BOTTOM NAV ================= */
@@ -220,7 +202,7 @@ main,
   background: #fff;
   border-top: 1px solid #eee;
   display: flex;
-  z-index: 100;
+  z-index: 1000;
 }
 
 .bottom-nav button {
@@ -239,7 +221,7 @@ main,
   width: 85%;
   height: 100%;
   background: #fff;
-  z-index: 300;
+  z-index: 3000;
   padding: 20px;
   transition: 0.3s ease;
   overflow-y: auto;
@@ -247,23 +229,6 @@ main,
 
 .side-menu.active {
   left: 0;
-}
-
-.side-header {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.close-menu {
-  background: none;
-  border: none;
-  font-size: 28px;
-  cursor: pointer;
-}
-
-.menu-block {
-  border-bottom: 1px solid #eee;
-  padding: 14px 0;
 }
 
 .menu-title {
