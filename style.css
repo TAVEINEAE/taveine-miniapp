@@ -9,19 +9,19 @@ body {
   color: #111;
 }
 
-/* ================= TOP BAR ================= */
+/* TOP BAR */
 .top-bar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 56px;
+  height: 60px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
-  background: #fff;
-  border-bottom: 1px solid #eee;
   z-index: 100;
 }
 
@@ -32,52 +32,47 @@ body {
 }
 
 .logo {
-  height: 34px;
+  height: 36px;
 }
 
-.spacer {
+.top-spacer {
   width: 24px;
 }
 
-/* ================= MAIN ================= */
-main {
+/* MAIN */
+.app {
   padding-top: 70px;
   padding-bottom: 80px;
 }
 
-/* ================= HERO ================= */
+/* HERO */
 .hero img {
   width: 100%;
-  height: 260px;
-  object-fit: cover;
   display: block;
 }
 
-/* ================= SECTION ================= */
-.section {
-  padding: 16px;
+/* TITLES */
+.title {
+  padding: 20px 16px;
 }
 
-.section h2 {
-  font-size: 20px;
-  margin-bottom: 12px;
+.title h2 {
+  margin: 0 0 6px;
 }
 
-/* ================= SLIDER ================= */
-.slider {
-  display: flex;
-  gap: 12px;
-  overflow-x: auto;
-  padding-bottom: 10px;
+.title p {
+  margin: 0;
+  font-weight: 600;
 }
 
-.slider::-webkit-scrollbar {
-  display: none;
+.title span {
+  font-size: 14px;
+  color: #555;
 }
 
+/* CARD */
 .card {
   min-width: 140px;
-  flex-shrink: 0;
   text-align: center;
 }
 
@@ -99,43 +94,77 @@ main {
   color: #555;
 }
 
-/* ================= TEXT BLOCK ================= */
-.text-block {
-  text-align: center;
-  padding: 20px 16px;
+/* SLIDER */
+.slider {
+  overflow-x: auto;
+  padding: 0 16px 16px;
 }
 
-.text-block h3 {
-  font-size: 22px;
-  margin-bottom: 6px;
-}
-
-.text-block p {
-  font-size: 14px;
-  color: #555;
-}
-
-/* ================= GRID 2x2 ================= */
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.slider-track {
+  display: flex;
   gap: 12px;
-  padding: 16px;
 }
 
-.grid-item {
-  background: #f7f7f7;
-  border-radius: 14px;
-  overflow: hidden;
+/* GRID 2x2 */
+.grid-2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 0 16px 20px;
 }
 
-.grid-item img {
+/* POSTER */
+.poster img {
   width: 100%;
-  height: 180px;
-  object-fit: contain;
+  display: block;
 }
 
-/* ================= BOTTOM NAV ================= */
+/* PARTNERS */
+.partners {
+  overflow: hidden;
+  padding: 20px 0;
+}
+
+.marquee {
+  display: flex;
+  gap: 40px;
+  animation: scroll 15s linear infinite;
+}
+
+.marquee img {
+  height: 32px;
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 24px 16px;
+  font-size: 14px;
+}
+
+.footer-logo {
+  height: 40px;
+  margin-bottom: 12px;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 12px 0;
+}
+
+.socials a {
+  text-decoration: none;
+  color: #0a4;
+}
+
+/* BOTTOM NAV */
 .bottom-nav {
   position: fixed;
   bottom: 0;
@@ -152,5 +181,4 @@ main {
   border: none;
   background: none;
   font-size: 13px;
-  color: #333;
 }
