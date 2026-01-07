@@ -2,45 +2,48 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>TAVEINE</title>
+  <title>TAVEINE Mini App</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Telegram Mini App SDK -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
-  <!-- TOP HEADER -->
-  <header class="top-bar">
-    <button class="menu-btn">☰</button>
+<!-- TOP BAR -->
+<header class="top-bar">
+  <button class="menu-btn">☰</button>
+  <img src="logo.png" class="logo" />
+  <div class="top-spacer"></div>
+</header>
 
-    <!-- логотип пока берём с сайта -->
-    <img 
-      src="https://taveine.com/wp-content/uploads/2023/06/logo.png"
-      class="logo"
-      alt="TAVEINE"
-    />
+<!-- MAIN -->
+<main id="app">
 
-    <div class="top-spacer"></div>
-  </header>
+  <!-- HERO -->
+  <section class="hero">
+    <img src="hero.jpg" alt="Christmas Collection">
+    <div class="hero-text">
+      <h1>Christmas Collection</h1>
+    </div>
+  </section>
 
-  <!-- MAIN CONTENT -->
-  <main id="app">
-    <section id="products" class="products-grid">
-      <!-- товары из WordPress загрузятся сюда -->
-    </section>
-  </main>
+  <!-- PRODUCTS -->
+  <section class="products-slider" id="products">
+    <!-- товары загрузятся из script.js -->
+  </section>
 
-  <!-- BOTTOM NAVIGATION -->
-  <nav class="bottom-nav">
-    <button class="active">Shop</button>
-    <button>Search</button>
-    <button>Wishlist</button>
-    <button>Cart</button>
-  </nav>
+</main>
 
-  <script src="script.js"></script>
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <button>Shop</button>
+  <button>Search</button>
+  <button>Account</button>
+  <button>Wishlist</button>
+  <button>Cart</button>
+</nav>
+
+<script src="script.js"></script>
 </body>
 </html>
