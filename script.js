@@ -1,19 +1,23 @@
-const tg = window.Telegram.WebApp;
-tg.expand();
+const modal = document.getElementById("product-modal");
+const title = document.getElementById("modal-title");
+const price = document.getElementById("modal-price");
+const img = document.getElementById("modal-img");
 
-const container = document.getElementById("products");
+function openProduct(t, p, i) {
+  title.textContent = t;
+  price.textContent = p;
+  img.src = i;
+  modal.style.display = "flex";
+}
 
-fetch("https://taveine.com/wp-json/miniapp/v1/products")
-  .then(r => r.json())
-  .then(products => {
-    products.slice(0, 10).forEach(p => {
-      const card = document.createElement("div");
-      card.className = "product-card";
-      card.innerHTML = `
-        <img src="${p.image}">
-        <h3>${p.name}</h3>
-        <span>${p.price} AED</span>
-      `;
-      container.appendChild(card);
-    });
-  });
+function closeProduct() {
+  modal.style.display = "none";
+}
+
+function addToCart() {
+  alert("Added to cart 🌸");
+}
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
