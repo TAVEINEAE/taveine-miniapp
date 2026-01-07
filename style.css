@@ -1,6 +1,11 @@
+/* ================= RESET ================= */
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   background: #fff;
   color: #111;
 }
@@ -15,7 +20,7 @@ body {
   display: grid;
   grid-template-columns: 40px 1fr 40px;
   align-items: center;
-  padding: 0 12px;
+  padding: 0 14px;
   background: #fff;
   border-bottom: 1px solid #eee;
   z-index: 100;
@@ -24,7 +29,8 @@ body {
 .menu-btn {
   background: none;
   border: none;
-  font-size: 20px;
+  font-size: 22px;
+  cursor: pointer;
 }
 
 .logo {
@@ -41,7 +47,7 @@ body {
 /* ================= MAIN ================= */
 main,
 #content {
-  padding-top: 110px;   /* ВАЖНО: под 72px + логотип */
+  padding-top: 110px;
   padding-bottom: 90px;
 }
 
@@ -57,16 +63,17 @@ main,
 }
 
 .section h2 {
-  margin-bottom: 12px;
+  font-size: 18px;
+  margin: 0 0 14px;
 }
 
 /* ================= SLIDER ================= */
 .slider {
   display: flex;
-  gap: 12px;
+  gap: 14px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
 }
 
 .slider::-webkit-scrollbar {
@@ -74,15 +81,16 @@ main,
 }
 
 .card {
-  min-width: 140px;
+  min-width: 150px;
   scroll-snap-align: start;
   text-align: center;
 }
 
 .card img {
   width: 100%;
-  height: 140px;
+  height: 150px;
   object-fit: contain;
+  border-radius: 12px;
 }
 
 .card h4 {
@@ -95,10 +103,18 @@ main,
   color: #555;
 }
 
-/* ================= TEXT ================= */
-.text-block {
-  padding: 24px 16px;
-  text-align: center;
+/* ================= HEART BUTTON ================= */
+.heart-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #bbb;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+.heart-btn.active {
+  color: #b03030;
 }
 
 /* ================= GRID ================= */
@@ -115,7 +131,7 @@ main,
 
 .grid-card img {
   width: 100%;
-  height: 160px;
+  height: 170px;
   object-fit: contain;
   border-radius: 12px;
 }
@@ -143,27 +159,28 @@ main,
 
 .modal-content {
   background: #fff;
-  padding: 20px;
   width: 90%;
-  max-width: 340px;
+  max-width: 360px;
+  padding: 20px;
+  border-radius: 14px;
   text-align: center;
-  border-radius: 12px;
   position: relative;
 }
 
 .modal-content img {
   width: 100%;
-  height: 200px;
+  height: 220px;
   object-fit: contain;
 }
 
 .close-btn {
   position: absolute;
-  right: 16px;
   top: 12px;
+  right: 14px;
   border: none;
   background: none;
   font-size: 26px;
+  cursor: pointer;
 }
 
 /* ================= BUTTON ================= */
@@ -174,7 +191,23 @@ main,
   padding: 14px;
   width: 100%;
   border-radius: 10px;
-  margin-top: 12px;
+  margin-top: 14px;
+  font-size: 15px;
+}
+
+/* ================= CART / WISHLIST ITEMS ================= */
+.cart-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.cart-item img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
 }
 
 /* ================= BOTTOM NAV ================= */
@@ -194,103 +227,8 @@ main,
   flex: 1;
   border: none;
   background: none;
-}
-
-/* ================= PARTNERS ================= */
-.partners {
-  overflow: hidden;
-  padding: 40px 0;
-  background: #fff;
-}
-
-.partners-track {
-  display: flex;
-  gap: 50px;
-  width: max-content;
-  animation: scrollPartners 25s linear infinite;
-}
-
-.partners-track img {
-  height: 40px;
-  opacity: 0.6;
-  object-fit: contain;
-}
-
-@keyframes scrollPartners {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-/* ================= FOOTER ================= */
-.footer {
-  background: #f6f6f4;
-  padding: 40px 20px 120px;
-  color: #1f3d2b;
-}
-
-.footer-logo {
-  width: 120px;
-  display: block;
-  margin-bottom: 30px;
-}
-
-.footer-info p {
-  font-size: 15px;
-  line-height: 1.6;
-  margin: 8px 0;
-}
-
-.footer-info a {
-  color: #1f3d2b;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.footer-direction {
-  display: inline-block;
-  margin-top: 14px;
-  font-weight: 600;
-  border-bottom: 1px solid #1f3d2b;
-}
-
-.footer-socials {
-  display: flex;
-  gap: 16px;
-  margin: 26px 0;
-}
-
-.footer-socials a {
-  width: 42px;
-  height: 42px;
-  border: 1px solid #1f3d2b;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: #1f3d2b;
-  font-size: 18px;
-}
-
-.footer-accordion {
-  border-top: 1px solid #ddd;
-  margin-top: 24px;
-}
-
-.footer-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 18px 0;
-  border-bottom: 1px solid #ddd;
-  font-size: 16px;
-  font-weight: 500;
-}
-
-.footer-copy {
-  text-align: center;
   font-size: 13px;
-  opacity: 0.7;
-  margin-top: 30px;
+  cursor: pointer;
 }
 
 /* ================= SIDE MENU ================= */
@@ -317,14 +255,15 @@ main,
 }
 
 .close-menu {
-  font-size: 28px;
   background: none;
   border: none;
+  font-size: 28px;
+  cursor: pointer;
 }
 
 .menu-block {
   border-bottom: 1px solid #eee;
-  padding: 12px 0;
+  padding: 14px 0;
 }
 
 .menu-title {
@@ -343,24 +282,7 @@ main,
 .submenu a {
   display: block;
   padding: 6px 0;
-  color: #111;
   text-decoration: none;
+  color: #111;
   font-size: 15px;
 }
-
-#cart-items {
-  text-align: left;
-  margin: 16px 0;
-}
-
-.cart-item {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  font-size: 14px;
-}
-
-#cart-count {
-  font-weight: bold;
-}
-
