@@ -1,44 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>TAVEINE Mini App</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- TOP BAR -->
 <header class="top-bar">
   <button class="menu-btn">☰</button>
-  <img src="logo.png" class="logo" />
+  <img src="logo.png" class="logo">
   <div class="top-spacer"></div>
 </header>
 
-<!-- MAIN -->
 <main id="app">
 
   <!-- HERO -->
   <section class="hero">
-    <img src="hero.jpg" alt="Christmas Collection">
-    <div class="hero-text">
-      <h1>Christmas Collection</h1>
-    </div>
+    <img src="hero.jpg">
   </section>
 
+  <!-- TITLE -->
+  <h2 class="section-title">Christmas Collection</h2>
+
   <!-- PRODUCTS -->
-  <section class="products-slider" id="products">
-    <!-- товары загрузятся из script.js -->
-  </section>
+  <section class="products" id="products"></section>
 
 </main>
 
-<!-- BOTTOM NAV -->
 <nav class="bottom-nav">
   <button>Shop</button>
   <button>Search</button>
+  <button>Account</button>
   <button>Wishlist</button>
   <button>Cart</button>
 </nav>
