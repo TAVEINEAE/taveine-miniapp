@@ -15,68 +15,105 @@
   <div class="spacer"></div>
 </header>
 
-<main>
+<main class="app">
 
-  <!-- HERO -->
-  <section class="hero">
-    <img src="hero.jpg" alt="TAVEINE Hero">
+  <!-- ================= HOME SCREEN ================= -->
+  <section id="home-screen" class="screen active">
+
+    <!-- HERO -->
+    <section class="hero">
+      <img src="hero.jpg" alt="TAVEINE Hero">
+    </section>
+
+    <!-- SLIDER -->
+    <section class="section">
+      <h2>Christmas Collection</h2>
+
+      <div class="slider">
+        <div class="card" onclick="openProduct('Snowfall Serenity','620 AED','p1.jpg')">
+          <img src="p1.jpg">
+          <h4>Snowfall Serenity</h4>
+          <span>620 AED</span>
+        </div>
+
+        <div class="card" onclick="openProduct('Winter Harmony Bowl','580 AED','p2.jpg')">
+          <img src="p2.jpg">
+          <h4>Winter Harmony Bowl</h4>
+          <span>580 AED</span>
+        </div>
+
+        <div class="card" onclick="openProduct('Golden Pine','640 AED','p3.jpg')">
+          <img src="p3.jpg">
+          <h4>Golden Pine</h4>
+          <span>640 AED</span>
+        </div>
+
+        <div class="card" onclick="openProduct('Evergreen Glow','600 AED','p4.jpg')">
+          <img src="p4.jpg">
+          <h4>Evergreen Glow</h4>
+          <span>600 AED</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEXT -->
+    <section class="text-block">
+      <h3>TAVÉINE’s Favorites</h3>
+      <p>Beautifully Arranged. Thoughtfully Curated. Naturally Inspired.</p>
+    </section>
+
+    <!-- GRID 2x2 -->
+    <section class="section grid">
+      <div class="card" onclick="openProduct('Rose Basket Lilac','950 AED','g1.jpg')">
+        <img src="g1.jpg">
+      </div>
+      <div class="card" onclick="openProduct('Rose Basket Pink','950 AED','g2.jpg')">
+        <img src="g2.jpg">
+      </div>
+      <div class="card" onclick="openProduct('Rose Basket Ivory','990 AED','g3.jpg')">
+        <img src="g3.jpg">
+      </div>
+      <div class="card" onclick="openProduct('Rose Basket Gold','990 AED','g4.jpg')">
+        <img src="g4.jpg">
+      </div>
+    </section>
+
   </section>
 
-  <!-- SLIDER -->
-  <section class="section">
-    <h2>Christmas Collection</h2>
+  <!-- ================= PRODUCT SCREEN ================= -->
+  <section id="product-screen" class="screen">
+    <button class="back-btn" onclick="goHome()">← Back</button>
 
-    <div class="slider">
-      <div class="card">
-        <img src="p1.jpg">
-        <h4>Snowfall Serenity</h4>
-        <span>620 AED</span>
-      </div>
+    <img id="product-image" class="product-image">
+    <h2 id="product-title"></h2>
+    <p id="product-price"></p>
 
-      <div class="card">
-        <img src="p2.jpg">
-        <h4>Winter Harmony Bowl</h4>
-        <span>580 AED</span>
-      </div>
-
-      <div class="card">
-        <img src="p3.jpg">
-        <h4>Golden Pine</h4>
-        <span>640 AED</span>
-      </div>
-
-      <div class="card">
-        <img src="p4.jpg">
-        <h4>Evergreen Glow</h4>
-        <span>600 AED</span>
-      </div>
-    </div>
+    <button class="main-btn" onclick="addToCart()">Add to Cart</button>
   </section>
 
-  <!-- TEXT -->
-  <section class="text-block">
-    <h3>TAVÉINE’s Favorites</h3>
-    <p>Beautifully Arranged. Thoughtfully Curated. Naturally Inspired.</p>
+  <!-- ================= CART SCREEN ================= -->
+  <section id="cart-screen" class="screen">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <button class="main-btn" onclick="checkout()">Checkout</button>
   </section>
 
-  <!-- GRID 2x2 -->
-  <section class="section">
-    <div class="slider">
-      <img src="g1.jpg">
-    <div class="grid-item"><img src="g2.jpg"></div>
-    <div class="grid-item"><img src="g3.jpg"></div>
-    <div class="grid-item"><img src="g4.jpg"></div>
+  <!-- ================= WISHLIST SCREEN ================= -->
+  <section id="wishlist-screen" class="screen">
+    <h2>Wishlist</h2>
+    <div id="wishlist-items"></div>
   </section>
 
 </main>
 
 <!-- BOTTOM NAV -->
 <nav class="bottom-nav">
-  <button>Shop</button>
-  <button>Search</button>
-  <button>Wishlist</button>
-  <button>Cart</button>
+  <button onclick="goHome()">Shop</button>
+  <button onclick="alert('Search coming soon')">Search</button>
+  <button onclick="showScreen('wishlist-screen')">Wishlist</button>
+  <button onclick="showScreen('cart-screen')">Cart</button>
 </nav>
 
+<script src="script.js"></script>
 </body>
 </html>
