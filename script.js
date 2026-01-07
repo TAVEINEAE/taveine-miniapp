@@ -2,8 +2,8 @@
  * CONFIG — ОБЯЗАТЕЛЬНО ЗАПОЛНИ
  ********************************************************/
 const SITE_URL = "https://taveine.com";
-const CK = "ck_XXXXXXXXXXXXXXXXXXXXXXXX";
-const CS = "cs_XXXXXXXXXXXXXXXXXXXXXXXX";
+const CK = "ck_120a4df77ad763e48ac07372e08af1eb48e40dcb";
+const CS = "cs_1bee08c5b8030a07cbd4b46a8c0edfa636bb4a44";
 
 /********************************************************
  * ELEMENTS
