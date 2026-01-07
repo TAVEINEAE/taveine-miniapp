@@ -1,36 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>TAVEINE Mini App</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
+<!-- TOP BAR -->
 <header class="top-bar">
   <button class="menu-btn">☰</button>
   <img src="logo.png" class="logo">
-  <div class="top-spacer"></div>
+  <div class="spacer"></div>
 </header>
 
-<main id="app">
+<main>
 
   <!-- HERO -->
   <section class="hero">
-    <img src="hero.jpg">
+    <img src="hero.jpg" alt="Hero">
   </section>
 
-  <!-- TITLE -->
-  <h2 class="section-title">Christmas Collection</h2>
+  <!-- SLIDER -->
+  <section class="section">
+    <h2>Christmas Collection</h2>
+    <div class="slider" id="slider-products">
+      <!-- products later -->
+    </div>
+  </section>
 
-  <!-- PRODUCTS -->
-  <section class="products" id="products"></section>
+  <!-- TEXT -->
+  <section class="text-block">
+    <h3>TAVÉINE’s Favorites</h3>
+    <p>Beautifully Arranged. Thoughtfully Curated. Naturally Inspired.</p>
+  </section>
+
+  <!-- GRID 2x2 -->
+  <section class="grid">
+    <div class="grid-item"></div>
+    <div class="grid-item"></div>
+    <div class="grid-item"></div>
+    <div class="grid-item"></div>
+  </section>
+
+  <!-- POSTER -->
+  <section class="poster">
+    <img src="poster.jpg">
+  </section>
+
+  <!-- PARTNERS -->
+  <section class="partners">
+    <div class="marquee">
+      <span>GUCCI</span>
+      <span>DIOR</span>
+      <span>CHANEL</span>
+      <span>BVLGARI</span>
+      <span>HERMÈS</span>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p><b>TAVEINE</b></p>
+    <p>International City, Dubai, UAE</p>
+    <p>📞 +971 58 574 37 06</p>
+
+    <div class="socials">
+      <a href="https://www.instagram.com/taveine.ae" target="_blank">Instagram</a>
+      <a href="https://www.facebook.com/share/17hhNCfDje/" target="_blank">Facebook</a>
+      <a href="https://www.taveine.com" target="_blank">Website</a>
+    </div>
+  </footer>
 
 </main>
 
+<!-- BOTTOM NAV -->
 <nav class="bottom-nav">
   <button>Shop</button>
   <button>Search</button>
@@ -39,5 +85,9 @@
 </nav>
 
 <script src="script.js"></script>
+<script>
+  Telegram.WebApp.expand();
+</script>
+
 </body>
 </html>
