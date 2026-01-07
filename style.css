@@ -347,3 +347,20 @@ main,
   text-decoration: none;
   font-size: 15px;
 }
+
+#cart-items {
+  text-align: left;
+  margin: 16px 0;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+#cart-count {
+  font-weight: bold;
+}
+
