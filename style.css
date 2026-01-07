@@ -5,7 +5,7 @@ body {
   color: #111;
 }
 
-/* TOP BAR */
+/* ================= TOP BAR ================= */
 .top-bar {
   position: fixed;
   top: 0;
@@ -18,7 +18,7 @@ body {
   padding: 0 12px;
   background: #fff;
   border-bottom: 1px solid #eee;
-  z-index: 10;
+  z-index: 100;
 }
 
 .menu-btn {
@@ -28,7 +28,7 @@ body {
 }
 
 .logo {
-  height: 90px;          /* ← ЛОГО 90px */
+  height: 90px;
   max-width: 180px;
   object-fit: contain;
   margin: 0 auto;
@@ -38,19 +38,20 @@ body {
   width: 24px;
 }
 
-/* MAIN */
-main {
-  padding-top: 70px;
-  padding-bottom: 80px;
+/* ================= MAIN ================= */
+main,
+#content {
+  padding-top: 110px;   /* ВАЖНО: под 72px + логотип */
+  padding-bottom: 90px;
 }
 
-/* HERO */
+/* ================= HERO ================= */
 .hero img {
   width: 100%;
   display: block;
 }
 
-/* SECTION */
+/* ================= SECTION ================= */
 .section {
   padding: 16px;
 }
@@ -59,12 +60,17 @@ main {
   margin-bottom: 12px;
 }
 
-/* SLIDER */
+/* ================= SLIDER ================= */
 .slider {
   display: flex;
   gap: 12px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+  padding-bottom: 4px;
+}
+
+.slider::-webkit-scrollbar {
+  display: none;
 }
 
 .card {
@@ -79,27 +85,52 @@ main {
   object-fit: contain;
 }
 
-/* TEXT */
+.card h4 {
+  font-size: 14px;
+  margin: 8px 0 4px;
+}
+
+.card span {
+  font-size: 13px;
+  color: #555;
+}
+
+/* ================= TEXT ================= */
 .text-block {
   padding: 24px 16px;
   text-align: center;
 }
 
-/* GRID */
+/* ================= GRID ================= */
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
   padding: 16px;
+}
+
+.grid-card {
+  text-align: center;
 }
 
 .grid-card img {
   width: 100%;
   height: 160px;
   object-fit: contain;
+  border-radius: 12px;
 }
 
-/* MODAL */
+.grid-card h4 {
+  font-size: 14px;
+  margin: 8px 0 4px;
+}
+
+.grid-card span {
+  font-size: 13px;
+  color: #555;
+}
+
+/* ================= MODAL ================= */
 .modal {
   position: fixed;
   inset: 0;
@@ -107,7 +138,7 @@ main {
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 20;
+  z-index: 200;
 }
 
 .modal-content {
@@ -117,6 +148,7 @@ main {
   max-width: 340px;
   text-align: center;
   border-radius: 12px;
+  position: relative;
 }
 
 .modal-content img {
@@ -127,14 +159,14 @@ main {
 
 .close-btn {
   position: absolute;
-  right: 20px;
-  top: 20px;
+  right: 16px;
+  top: 12px;
   border: none;
   background: none;
-  font-size: 24px;
+  font-size: 26px;
 }
 
-/* BUTTON */
+/* ================= BUTTON ================= */
 .main-btn {
   background: #0b3d2e;
   color: #fff;
@@ -145,7 +177,7 @@ main {
   margin-top: 12px;
 }
 
-/* BOTTOM NAV */
+/* ================= BOTTOM NAV ================= */
 .bottom-nav {
   position: fixed;
   bottom: 0;
@@ -155,6 +187,7 @@ main {
   background: #fff;
   border-top: 1px solid #eee;
   display: flex;
+  z-index: 100;
 }
 
 .bottom-nav button {
@@ -163,10 +196,10 @@ main {
   background: none;
 }
 
-/* PARTNERS */
+/* ================= PARTNERS ================= */
 .partners {
   overflow: hidden;
-  padding: 30px 0;
+  padding: 40px 0;
   background: #fff;
 }
 
@@ -183,27 +216,20 @@ main {
   object-fit: contain;
 }
 
-.partners-track img {
-  height: 40px;
-  opacity: 0.6;
-  object-fit: contain;
-}
-
 @keyframes scrollPartners {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
 
-/* FOOTER 1:1 */
+/* ================= FOOTER ================= */
 .footer {
   background: #f6f6f4;
   padding: 40px 20px 120px;
   color: #1f3d2b;
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
 }
 
 .footer-logo {
-  width: 120px; /* маленький как на сайте */
+  width: 120px;
   display: block;
   margin-bottom: 30px;
 }
@@ -267,7 +293,7 @@ main {
   margin-top: 30px;
 }
 
-/* SIDE MENU */
+/* ================= SIDE MENU ================= */
 .side-menu {
   position: fixed;
   top: 0;
@@ -275,7 +301,7 @@ main {
   width: 85%;
   height: 100%;
   background: #fff;
-  z-index: 999;
+  z-index: 300;
   padding: 20px;
   transition: 0.3s ease;
   overflow-y: auto;
@@ -321,4 +347,3 @@ main {
   text-decoration: none;
   font-size: 15px;
 }
-
