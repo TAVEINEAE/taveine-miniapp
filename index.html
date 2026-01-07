@@ -1,130 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TAVEINE Mini App</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Telegram Mini App -->
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <!-- TOP BAR -->
 <header class="top-bar">
   <button class="menu-btn">☰</button>
-  <img src="images/logo.png" class="logo">
-  <div class="top-spacer"></div>
+  <img src="logo.png" class="logo" />
+  <div class="spacer"></div>
 </header>
 
-<main class="app">
+<main>
 
-  <!-- HERO POSTER -->
+  <!-- HERO -->
   <section class="hero">
-    <img src="images/hero.jpg">
+    <img src="hero.jpg" alt="TAVEINE Hero">
   </section>
 
-  <!-- TITLE -->
-  <section class="title">
+  <!-- SLIDER -->
+  <section class="section">
     <h2>Christmas Collection</h2>
-    <p>TAVÉINE’s Favorites</p>
-    <span>Beautifully Arranged. Thoughtfully Curated. Naturally Inspired.</span>
-  </section>
 
-  <!-- HORIZONTAL SCROLL (4 SMALL ITEMS) -->
-  <section class="slider">
-    <div class="slider-track">
-
+    <div class="slider">
       <div class="card">
-        <img src="images/p1.jpg">
+        <img src="p1.jpg">
         <h4>Snowfall Serenity</h4>
         <span>620 AED</span>
       </div>
 
       <div class="card">
-        <img src="images/p2.jpg">
-        <h4>Winter Harmony</h4>
+        <img src="p2.jpg">
+        <h4>Winter Harmony Bowl</h4>
         <span>580 AED</span>
       </div>
 
       <div class="card">
-        <img src="images/p3.jpg">
+        <img src="p3.jpg">
         <h4>Golden Pine</h4>
         <span>640 AED</span>
       </div>
 
       <div class="card">
-        <img src="images/p4.jpg">
-        <h4>Festive Bloom</h4>
-        <span>690 AED</span>
+        <img src="p4.jpg">
+        <h4>Evergreen Glow</h4>
+        <span>600 AED</span>
       </div>
-
     </div>
   </section>
 
-  <!-- GRID 2x2 (SAME SIZE AS ABOVE) -->
-  <section class="grid-2x2">
-    <div class="card">
-      <img src="images/p5.jpg">
-      <h4>Rose Blush</h4>
-      <span>720 AED</span>
-    </div>
-
-    <div class="card">
-      <img src="images/p6.jpg">
-      <h4>Lavender Dream</h4>
-      <span>750 AED</span>
-    </div>
-
-    <div class="card">
-      <img src="images/p7.jpg">
-      <h4>Ivory Grace</h4>
-      <span>710 AED</span>
-    </div>
-
-    <div class="card">
-      <img src="images/p8.jpg">
-      <h4>Pink Elegance</h4>
-      <span>780 AED</span>
-    </div>
+  <!-- TEXT -->
+  <section class="text-block">
+    <h3>TAVÉINE’s Favorites</h3>
+    <p>Beautifully Arranged. Thoughtfully Curated. Naturally Inspired.</p>
   </section>
 
-  <!-- BIG POSTER -->
-  <section class="poster">
-    <img src="images/poster.jpg">
+  <!-- GRID 2x2 -->
+  <section class="grid">
+    <div class="grid-item"><img src="g1.jpg"></div>
+    <div class="grid-item"><img src="g2.jpg"></div>
+    <div class="grid-item"><img src="g3.jpg"></div>
+    <div class="grid-item"><img src="g4.jpg"></div>
   </section>
-
-  <!-- PARTNERS MARQUEE -->
-  <section class="partners">
-    <div class="marquee">
-      <img src="images/visa.png">
-      <img src="images/mastercard.png">
-      <img src="images/amex.png">
-      <img src="images/paypal.png">
-      <img src="images/applepay.png">
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <img src="images/logo.png" class="footer-logo">
-
-    <p>
-      Address: International City, Dubai, UAE<br>
-      Phone: +971 58 574 37 06<br>
-      Email: support@taveine.com
-    </p>
-
-    <div class="socials">
-      <a href="https://www.instagram.com/taveine.ae" target="_blank">Instagram</a>
-      <a href="https://www.facebook.com/share/17hhNCfDje" target="_blank">Facebook</a>
-      <a href="https://www.taveine.com" target="_blank">Website</a>
-    </div>
-
-    <small>© TAVÉINE Flower Shop. All Rights Reserved.</small>
-  </footer>
 
 </main>
 
@@ -136,11 +77,6 @@
   <button>Wishlist</button>
   <button>Cart</button>
 </nav>
-
-<script>
-  const tg = window.Telegram.WebApp;
-  tg.expand();
-</script>
 
 </body>
 </html>
