@@ -1,22 +1,18 @@
-// ================= MODAL =================
-const modal = document.getElementById("product-modal");
-const title = document.getElementById("modal-title");
-const price = document.getElementById("modal-price");
-const img = document.getElementById("modal-img");
+// ================= MODAL (PRODUCT) =================
+const productModal = document.getElementById("product-modal");
+const modalTitle = document.getElementById("modal-title");
+const modalPrice = document.getElementById("modal-price");
+const modalImg = document.getElementById("modal-img");
 
-function openProduct(t, p, i) {
-  title.textContent = t;
-  price.textContent = p;
-  img.src = i;
-  modal.style.display = "flex";
+function openProduct(name, price, img) {
+  modalTitle.textContent = name;
+  modalPrice.textContent = price;
+  modalImg.src = img;
+  productModal.style.display = "flex";
 }
 
 function closeProduct() {
-  modal.style.display = "none";
-}
-
-function addToCart() {
-  alert("Added to cart 🌸");
+  productModal.style.display = "none";
 }
 
 function scrollToTop() {
@@ -34,13 +30,9 @@ function toggleSub(id) {
   const block = document.getElementById(id);
   const icon = document.getElementById("icon-" + id);
 
-  if (block.style.display === "block") {
-    block.style.display = "none";
-    icon.innerText = "+";
-  } else {
-    block.style.display = "block";
-    icon.innerText = "−";
-  }
+  const isOpen = block.style.display === "block";
+  block.style.display = isOpen ? "none" : "block";
+  icon.textContent = isOpen ? "+" : "−";
 }
 
 // ================= PRODUCTS =================
@@ -57,14 +49,13 @@ const products = [
 ];
 
 // ================= RENDER =================
-function renderProducts(category, sectionTitle) {
+function renderProducts(category, title) {
   const container = document.getElementById("content");
-
   const filtered = products.filter(p => p.category === category);
 
   let html = `
     <section class="section">
-      <h2>${sectionTitle}</h2>
+      <h2>${title}</h2>
       <div class="grid">
   `;
 
@@ -72,17 +63,15 @@ function renderProducts(category, sectionTitle) {
     html += `
       <div class="grid-card" onclick="openProduct('${p.name}','${p.price}','${p.img}')">
         <img src="${p.img}" alt="${p.name}">
+        <button class="heart-btn"
+          onclick="toggleWishlist('${p.name}','${p.price}','${p.img}', this); event.stopPropagation()">♥</button>
         <h4>${p.name}</h4>
         <span>${p.price}</span>
       </div>
     `;
   });
 
-  html += `
-      </div>
-    </section>
-  `;
-
+  html += `</div></section>`;
   container.innerHTML = html;
   toggleMenu();
   scrollToTop();
@@ -90,13 +79,12 @@ function renderProducts(category, sectionTitle) {
 
 // ================= CART =================
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
 updateCartCount();
 
 function addToCart() {
   cart.push({
-    name: title.textContent,
-    price: price.textContent
+    name: modalTitle.textContent,
+    price: modalPrice.textContent
   });
 
   localStorage.setItem("cart", JSON.stringify(cart));
@@ -105,8 +93,8 @@ function addToCart() {
 }
 
 function updateCartCount() {
-  const count = document.getElementById("cart-count");
-  if (count) count.textContent = `(${cart.length})`;
+  const el = document.getElementById("cart-count");
+  if (el) el.textContent = `(${cart.length})`;
 }
 
 function openCart() {
@@ -114,8 +102,7 @@ function openCart() {
   const list = document.getElementById("cart-items");
 
   list.innerHTML = "";
-
-  cart.forEach((item, index) => {
+  cart.forEach(item => {
     list.innerHTML += `
       <div class="cart-item">
         <span>${item.name}</span>
@@ -131,8 +118,58 @@ function closeCart() {
   document.getElementById("cart-modal").style.display = "none";
 }
 
+// ================= WISHLIST =================
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+updateWishlistCount();
+
+function toggleWishlist(name, price, img, btn) {
+  const index = wishlist.findIndex(i => i.name === name);
+
+  if (index === -1) {
+    wishlist.push({ name, price, img });
+    btn.classList.add("active");
+  } else {
+    wishlist.splice(index, 1);
+    btn.classList.remove("active");
+  }
+
+  localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  updateWishlistCount();
+}
+
+function updateWishlistCount() {
+  const el = document.getElementById("wishlist-count");
+  if (el) el.textContent = `(${wishlist.length})`;
+}
+
+function openWishlist() {
+  const modal = document.getElementById("wishlist-modal");
+  const list = document.getElementById("wishlist-items");
+
+  list.innerHTML = "";
+  wishlist.forEach(item => {
+    list.innerHTML += `
+      <div class="wishlist-item">
+        <span>${item.name}</span>
+        <span>${item.price}</span>
+      </div>
+    `;
+  });
+
+  modal.style.display = "flex";
+}
+
+function closeWishlist() {
+  document.getElementById("wishlist-modal").style.display = "none";
+}
+
 // ================= TELEGRAM CHECKOUT =================
 function checkoutTelegram() {
+  if (!window.Telegram || !window.Telegram.WebApp) {
+    alert("Telegram WebApp not found");
+    return;
+  }
+
   if (cart.length === 0) {
     alert("Cart is empty");
     return;
@@ -140,18 +177,15 @@ function checkoutTelegram() {
 
   const tg = window.Telegram.WebApp;
 
-  const order = {
+  tg.sendData(JSON.stringify({
     items: cart,
-    total_items: cart.length
-  };
-
-  tg.sendData(JSON.stringify(order));
-
-  alert("Order sent to Telegram ✅");
+    total: cart.length
+  }));
 
   cart = [];
   localStorage.removeItem("cart");
   updateCartCount();
   closeCart();
-}
 
+  alert("Order sent to Telegram ✅");
+}
