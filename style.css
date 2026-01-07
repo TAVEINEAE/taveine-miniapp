@@ -1,3 +1,4 @@
+/* RESET */
 * {
   box-sizing: border-box;
 }
@@ -9,176 +10,219 @@ body {
   color: #111;
 }
 
-/* TOP BAR */
+/* =====================
+   TOP BAR
+===================== */
 .top-bar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 60px;
-  background: #fff;
-  border-bottom: 1px solid #eee;
+  height: 64px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0 16px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
   z-index: 100;
 }
 
 .menu-btn {
+  position: absolute;
+  left: 16px;
   font-size: 22px;
   background: none;
   border: none;
+  cursor: pointer;
 }
 
 .logo {
-  height: 36px;
+  height: 42px; /* 🔥 ЛОГОТИП БОЛЬШЕ */
 }
 
-.top-spacer {
+.spacer {
   width: 24px;
 }
 
-/* MAIN */
-.app {
+/* =====================
+   MAIN
+===================== */
+main {
   padding-top: 70px;
-  padding-bottom: 80px;
+  padding-bottom: 90px;
 }
 
-/* HERO */
+/* =====================
+   HERO
+===================== */
 .hero img {
   width: 100%;
+  height: auto;
   display: block;
 }
 
-/* TITLES */
-.title {
-  padding: 20px 16px;
+/* =====================
+   SECTION
+===================== */
+.section {
+  padding: 24px 16px 8px;
 }
 
-.title h2 {
-  margin: 0 0 6px;
+.section h2 {
+  font-size: 22px;
+  margin-bottom: 16px;
 }
 
-.title p {
-  margin: 0;
-  font-weight: 600;
+/* =====================
+   SLIDER (4–5 ITEMS, SWIPE)
+===================== */
+.slider {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scroll-snap-type: x mandatory;
 }
 
-.title span {
-  font-size: 14px;
-  color: #555;
+.slider::-webkit-scrollbar {
+  display: none;
 }
 
-/* CARD */
-.card {
-  min-width: 140px;
+.slider .card {
+  min-width: 150px;
+  scroll-snap-align: start;
   text-align: center;
 }
 
-.card img {
+.slider img {
   width: 100%;
-  height: 140px;
-  object-fit: contain;
-  background: #f7f7f7;
   border-radius: 12px;
 }
 
-.card h4 {
+.slider h4 {
+  margin: 10px 0 4px;
   font-size: 14px;
-  margin: 8px 0 4px;
 }
 
-.card span {
+.slider span {
   font-size: 13px;
   color: #555;
 }
 
-/* SLIDER */
-.slider {
-  overflow-x: auto;
-  padding: 0 16px 16px;
+/* =====================
+   TEXT BLOCK
+===================== */
+.text-block {
+  padding: 32px 20px;
+  text-align: center;
 }
 
-.slider-track {
-  display: flex;
-  gap: 12px;
+.text-block h3 {
+  font-size: 22px;
+  margin-bottom: 8px;
 }
 
-/* GRID 2x2 */
-.grid-2x2 {
+.text-block p {
+  font-size: 15px;
+  color: #555;
+}
+
+/* =====================
+   GRID 2x2
+===================== */
+.grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  padding: 0 16px 20px;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 0 16px 32px;
 }
 
-/* POSTER */
+.grid-item {
+  background: #f7f7f7;
+  height: 180px;
+  border-radius: 12px;
+}
+
+/* =====================
+   POSTER
+===================== */
 .poster img {
   width: 100%;
   display: block;
 }
 
-/* PARTNERS */
+/* =====================
+   PARTNERS (ANIMATION)
+===================== */
 .partners {
   overflow: hidden;
   padding: 20px 0;
+  background: #fff;
 }
 
 .marquee {
   display: flex;
   gap: 40px;
-  animation: scroll 15s linear infinite;
+  animation: scroll 18s linear infinite;
 }
 
-.marquee img {
-  height: 32px;
+.marquee span {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1b3a2f;
+  white-space: nowrap;
 }
 
 @keyframes scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }
 
-/* FOOTER */
+/* =====================
+   FOOTER
+===================== */
 .footer {
+  padding: 32px 20px 40px;
   text-align: center;
-  padding: 24px 16px;
   font-size: 14px;
+  color: #444;
 }
 
-.footer-logo {
-  height: 40px;
-  margin-bottom: 12px;
+.footer .socials {
+  margin-top: 12px;
 }
 
-.socials {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin: 12px 0;
-}
-
-.socials a {
+.footer .socials a {
+  margin: 0 8px;
   text-decoration: none;
-  color: #0a4;
+  color: #1b3a2f;
+  font-weight: 500;
 }
 
-/* BOTTOM NAV */
+/* =====================
+   BOTTOM NAV
+===================== */
 .bottom-nav {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 64px;
+  height: 72px;
   background: #fff;
   border-top: 1px solid #eee;
   display: flex;
+  z-index: 100;
 }
 
 .bottom-nav button {
   flex: 1;
   border: none;
   background: none;
-  font-size: 13px;
+  font-size: 12px;
+  color: #1b3a2f;
 }
