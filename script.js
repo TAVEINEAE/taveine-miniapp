@@ -1,3 +1,4 @@
+// ================= MODAL =================
 const modal = document.getElementById("product-modal");
 const title = document.getElementById("modal-title");
 const price = document.getElementById("modal-price");
@@ -22,6 +23,7 @@ function scrollToTop() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
+// ================= MENU =================
 function toggleMenu() {
   document.getElementById("side-menu").classList.toggle("active");
 }
@@ -39,8 +41,10 @@ function toggleSub(id) {
     block.style.display = "block";
     icon.innerText = "−";
   }
+}
 
-  const products = [
+// ================= PRODUCTS =================
+const products = [
   { name: "Snowfall Serenity", price: "620 AED", img: "p1.jpg", category: "christmas" },
   { name: "Winter Harmony Bowl", price: "580 AED", img: "p2.jpg", category: "christmas" },
   { name: "Golden Pine", price: "640 AED", img: "p3.jpg", category: "christmas" },
@@ -51,30 +55,35 @@ function toggleSub(id) {
   { name: "Lilac Roses", price: "990 AED", img: "g3.jpg", category: "luxury" },
   { name: "Rose Gold", price: "990 AED", img: "g4.jpg", category: "luxury" }
 ];
-  
-function renderProducts(category, title) {
+
+// ================= RENDER =================
+function renderProducts(category, sectionTitle) {
   const container = document.getElementById("content");
 
   const filtered = products.filter(p => p.category === category);
 
-  let html = `<section class="section">
-    <h2>${title}</h2>
-    <div class="grid">`;
+  let html = `
+    <section class="section">
+      <h2>${sectionTitle}</h2>
+      <div class="grid">
+  `;
 
   filtered.forEach(p => {
     html += `
       <div class="grid-card" onclick="openProduct('${p.name}','${p.price}','${p.img}')">
-        <img src="${p.img}">
+        <img src="${p.img}" alt="${p.name}">
         <h4>${p.name}</h4>
         <span>${p.price}</span>
       </div>
     `;
   });
 
-  html += `</div></section>`;
+  html += `
+      </div>
+    </section>
+  `;
 
   container.innerHTML = html;
-  toggleMenu(); // закрыть меню
-  window.scrollTo(0, 0);
+  toggleMenu();
+  scrollToTop();
 }
-
