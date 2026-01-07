@@ -162,3 +162,53 @@ main {
   border: none;
   background: none;
 }
+
+/* PARTNERS */
+.partners {
+  overflow: hidden;
+  padding: 30px 0;
+  background: #fff;
+}
+
+.partners-track {
+  display: flex;
+  gap: 50px;
+  width: max-content;
+  animation: scrollPartners 25s linear infinite;
+}
+
+.partners-track img {
+  height: 40px;
+  opacity: 0.6;
+  object-fit: contain;
+}
+
+@keyframes scrollPartners {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* PARTNERS */
+.partners {
+  overflow: hidden;
+  padding: 30px 0;
+  background: #fff;
+}
+
+.partners-track {
+  display: flex;
+  gap: 50px;
+  width: max-content;
+  animation: scrollPartners 25s linear infinite;
+}
+
+.partners-track img {
+  height: 40px;
+  opacity: 0.6;
+  object-fit: contain;
+}
+
+@keyframes scrollPartners {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
