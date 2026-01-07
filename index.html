@@ -27,15 +27,15 @@
       Collection <span id="icon-collection">+</span>
     </div>
     <div id="collection" class="submenu">
-      <a href="#">Christmas Collection</a>
-      <a href="#">Spring</a>
-      <a href="#">New Arrivals</a>
-      <a href="#">Best Sellers</a>
-      <a href="#">Luxury</a>
-      <a href="#">Specialty</a>
-      <a href="#">Je t’aime Collection</a>
-      <a href="#">Vases</a>
-      <a href="#">Box</a>
+      <a onclick="renderProducts('christmas','Christmas Collection')">Christmas Collection</a>
+      <a onclick="renderProducts('spring','Spring Collection')">Spring</a>
+      <a onclick="renderProducts('new','New Arrivals')">New Arrivals</a>
+      <a onclick="renderProducts('best','Best Sellers')">Best Sellers</a>
+      <a onclick="renderProducts('luxury','Luxury Collection')">Luxury</a>
+      <a onclick="renderProducts('specialty','Specialty Collection')">Specialty</a>
+      <a onclick="renderProducts('jetaime','Je t’aime Collection')">Je t’aime Collection</a>
+      <a onclick="renderProducts('vases','Vases')">Vases</a>
+      <a onclick="renderProducts('box','Box Collection')">Box</a>
     </div>
   </div>
 
@@ -45,10 +45,10 @@
       Occasions <span id="icon-occasions">+</span>
     </div>
     <div id="occasions" class="submenu">
-      <a href="#">Anniversary</a>
-      <a href="#">Birthday</a>
-      <a href="#">I’m Sorry</a>
-      <a href="#">New Baby</a>
+      <a onclick="renderProducts('anniversary','Anniversary')">Anniversary</a>
+      <a onclick="renderProducts('birthday','Birthday')">Birthday</a>
+      <a onclick="renderProducts('sorry','I’m Sorry')">I’m Sorry</a>
+      <a onclick="renderProducts('newbaby','New Baby')">New Baby</a>
     </div>
   </div>
 
@@ -65,7 +65,7 @@
   </div>
 </div>
 
-<main>
+<main id="content">
 
   <!-- HERO -->
   <section class="hero">
