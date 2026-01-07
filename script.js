@@ -1,198 +1,89 @@
-/********************************************************
- * CONFIG
- ********************************************************/
-const SITE_URL = "https://taveine.com";
-const CK = "ck_120a4df77ad763e48ac07372e08af1eb48e40dcb";
-const CS = "cs_1bee08c5b8030a07cbd4b46a8c0edfa636bb4a44";
-
-/********************************************************
- * ELEMENTS
- ********************************************************/
-const content = document.getElementById("content");
+// ================= MODAL =================
 const modal = document.getElementById("product-modal");
-const modalTitle = document.getElementById("modal-title");
-const modalPrice = document.getElementById("modal-price");
-const modalImg = document.getElementById("modal-img");
+const title = document.getElementById("modal-title");
+const price = document.getElementById("modal-price");
+const img = document.getElementById("modal-img");
 
-/********************************************************
- * MENU
- ********************************************************/
-function toggleMenu() {
-  document.getElementById("side-menu").classList.toggle("active");
-}
-document.querySelector(".menu-btn").addEventListener("click", toggleMenu);
-
-function toggleSub(id) {
-  const el = document.getElementById(id);
-  const icon = document.getElementById("icon-" + id);
-  const open = el.style.display === "block";
-  el.style.display = open ? "none" : "block";
-  icon.innerText = open ? "+" : "−";
-}
-
-/********************************************************
- * PRODUCT MODAL
- ********************************************************/
-function openProduct(title, price, img) {
-  modalTitle.innerText = title;
-  modalPrice.innerHTML = price;
-  modalImg.src = img;
+function openProduct(t, p, i) {
+  title.textContent = t;
+  price.textContent = p;
+  img.src = i;
   modal.style.display = "flex";
 }
+
 function closeProduct() {
   modal.style.display = "none";
 }
 
-/********************************************************
- * SCROLL
- ********************************************************/
+function addToCart() {
+  alert("Added to cart 🌸");
+}
+
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-/********************************************************
- * CART
- ********************************************************/
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-function updateCartCount() {
-  const el = document.getElementById("cart-count");
-  if (el) el.innerText = `(${cart.length})`;
-}
-updateCartCount();
-
-function addToCart() {
-  cart.push({
-    name: modalTitle.innerText,
-    price: modalPrice.innerText,
-    img: modalImg.src
-  });
-  localStorage.setItem("cart", JSON.stringify(cart));
-  updateCartCount();
-  alert("Added to cart 🌸");
+// ================= MENU =================
+function toggleMenu() {
+  document.getElementById("side-menu").classList.toggle("active");
 }
 
-function openCart() {
-  const modal = document.getElementById("cart-modal");
-  const list = document.getElementById("cart-items");
-  list.innerHTML = "";
+document.querySelector(".menu-btn").addEventListener("click", toggleMenu);
 
-  cart.forEach(item => {
-    list.innerHTML += `
-      <div class="cart-item">
-        <img src="${item.img}">
-        <div>
-          <strong>${item.name}</strong>
-          <div>${item.price}</div>
-        </div>
-      </div>
-    `;
-  });
+function toggleSub(id) {
+  const block = document.getElementById(id);
+  const icon = document.getElementById("icon-" + id);
 
-  modal.style.display = "flex";
-}
-function closeCart() {
-  document.getElementById("cart-modal").style.display = "none";
-}
-
-/********************************************************
- * WISHLIST
- ********************************************************/
-let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-
-function updateWishlistCount() {
-  const el = document.getElementById("wishlist-count");
-  if (el) el.innerText = `(${wishlist.length})`;
-}
-updateWishlistCount();
-
-function toggleWishlist(name, price, img, btn) {
-  const index = wishlist.findIndex(i => i.name === name);
-  if (index === -1) {
-    wishlist.push({ name, price, img });
-    btn.classList.add("active");
+  if (block.style.display === "block") {
+    block.style.display = "none";
+    icon.innerText = "+";
   } else {
-    wishlist.splice(index, 1);
-    btn.classList.remove("active");
+    block.style.display = "block";
+    icon.innerText = "−";
   }
-  localStorage.setItem("wishlist", JSON.stringify(wishlist));
-  updateWishlistCount();
 }
 
-function openWishlist() {
-  const modal = document.getElementById("wishlist-modal");
-  const list = document.getElementById("wishlist-items");
-  list.innerHTML = "";
+// ================= PRODUCTS =================
+const products = [
+  { name: "Snowfall Serenity", price: "620 AED", img: "p1.jpg", category: "christmas" },
+  { name: "Winter Harmony Bowl", price: "580 AED", img: "p2.jpg", category: "christmas" },
+  { name: "Golden Pine", price: "640 AED", img: "p3.jpg", category: "christmas" },
+  { name: "Evergreen Glow", price: "600 AED", img: "p4.jpg", category: "christmas" },
 
-  wishlist.forEach(item => {
-    list.innerHTML += `
-      <div class="cart-item">
-        <img src="${item.img}">
-        <div>
-          <strong>${item.name}</strong>
-          <div>${item.price}</div>
-        </div>
+  { name: "Pink Roses", price: "950 AED", img: "g1.jpg", category: "luxury" },
+  { name: "Ivory Roses", price: "950 AED", img: "g2.jpg", category: "luxury" },
+  { name: "Lilac Roses", price: "990 AED", img: "g3.jpg", category: "luxury" },
+  { name: "Rose Gold", price: "990 AED", img: "g4.jpg", category: "luxury" }
+];
+
+// ================= RENDER =================
+function renderProducts(category, sectionTitle) {
+  const container = document.getElementById("content");
+
+  const filtered = products.filter(p => p.category === category);
+
+  let html = `
+    <section class="section">
+      <h2>${sectionTitle}</h2>
+      <div class="grid">
+  `;
+
+  filtered.forEach(p => {
+    html += `
+      <div class="grid-card" onclick="openProduct('${p.name}','${p.price}','${p.img}')">
+        <img src="${p.img}" alt="${p.name}">
+        <h4>${p.name}</h4>
+        <span>${p.price}</span>
       </div>
     `;
   });
 
-  modal.style.display = "flex";
-}
-function closeWishlist() {
-  document.getElementById("wishlist-modal").style.display = "none";
-}
-
-/********************************************************
- * WOOCOMMERCE FETCH (CATEGORY ID!)
- ********************************************************/
-async function fetchProductsByCategory(categoryId) {
-  const url = `${SITE_URL}/wp-json/wc/v3/products?category=${categoryId}&consumer_key=${CK}&consumer_secret=${CS}&per_page=20`;
-  const res = await fetch(url);
-  return await res.json();
-}
-
-/********************************************************
- * RENDER COLLECTION
- ********************************************************/
-async function renderProducts(categoryId, title) {
-  content.innerHTML = `
-    <section class="section">
-      <h2>${title}</h2>
-      <p style="padding:20px">Loading...</p>
+  html += `
+      </div>
     </section>
   `;
 
+  container.innerHTML = html;
   toggleMenu();
   scrollToTop();
-
-  try {
-    const products = await fetchProductsByCategory(categoryId);
-
-    let html = `
-      <section class="section">
-        <h2>${title}</h2>
-        <div class="grid">
-    `;
-
-    products.forEach(p => {
-      const img = p.images?.[0]?.src || "";
-      const price = p.price_html || `${p.price} AED`;
-
-      html += `
-        <div class="grid-card" onclick="openProduct('${p.name}','${price}','${img}')">
-          <img src="${img}">
-          <button class="heart-btn"
-            onclick="toggleWishlist('${p.name}','${price}','${img}', this); event.stopPropagation()">♥</button>
-          <h4>${p.name}</h4>
-          <span>${price}</span>
-        </div>
-      `;
-    });
-
-    html += `</div></section>`;
-    content.innerHTML = html;
-
-  } catch (e) {
-    content.innerHTML = "<p>Error loading products</p>";
-  }
 }
