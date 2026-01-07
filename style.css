@@ -267,3 +267,58 @@ main {
   margin-top: 30px;
 }
 
+/* SIDE MENU */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 85%;
+  height: 100%;
+  background: #fff;
+  z-index: 999;
+  padding: 20px;
+  transition: 0.3s ease;
+  overflow-y: auto;
+}
+
+.side-menu.active {
+  left: 0;
+}
+
+.side-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close-menu {
+  font-size: 28px;
+  background: none;
+  border: none;
+}
+
+.menu-block {
+  border-bottom: 1px solid #eee;
+  padding: 12px 0;
+}
+
+.menu-title {
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.submenu {
+  display: none;
+  padding-left: 12px;
+  margin-top: 10px;
+}
+
+.submenu a {
+  display: block;
+  padding: 6px 0;
+  color: #111;
+  text-decoration: none;
+  font-size: 15px;
+}
+
