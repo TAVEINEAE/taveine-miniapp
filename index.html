@@ -6,6 +6,22 @@
   <title>TAVEINE Mini App</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
+<!-- SEARCH MODAL -->
+<div id="search-modal" class="modal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeSearch()">×</button>
+    <h2>Search</h2>
+    <input
+      type="text"
+      id="search-input"
+      placeholder="Search flowers..."
+      oninput="searchProducts(this.value)"
+      style="width:100%;padding:12px;border-radius:8px;border:1px solid #ccc"
+    >
+    <div id="search-results" style="margin-top:14px"></div>
+  </div>
+</div>
 <body>
   
   <!-- SPLASH SCREEN -->
@@ -200,12 +216,23 @@
 
 <!-- BOTTOM NAV -->
 <nav class="bottom-nav">
-  <button onclick="openWishlist()">Shop</button>
-  <button>Search</button>
-  Wishlist <span id="wishlist-count">(0)</span>
-  Cart <span id="cart-count">(0)</span>
-</nav>
+  <button onclick="openShop()">
+    🏠<br>
+    <small>Shop</small>
+  </button>
 
-<script src="script.js"></script>
-</body>
-</html>
+  <button onclick="openSearch()">
+    🔍<br>
+    <small>Search</small>
+  </button>
+
+  <button onclick="openWishlist()">
+    ❤️<br>
+    <small>Wishlist <span id="wishlist-count">(0)</span></small>
+  </button>
+
+  <button onclick="openCart()">
+    🛒<br>
+    <small>Cart <span id="cart-count">(0)</span></small>
+  </button>
+</nav>
