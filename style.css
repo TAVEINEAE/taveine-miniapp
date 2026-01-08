@@ -379,4 +379,19 @@ main,
     opacity: 1;
     transform: scale(1);
   }
+
+.bottom-nav button {
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.bottom-nav small {
+  font-size: 11px;
+  color: #444;
+}
+
+.heart-btn {
+  position: absolute;
+  right: 8px;
+  top: 8px;
 }
