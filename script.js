@@ -257,3 +257,45 @@ window.addEventListener("load", () => {
     splash.style.display = "none";
   }, 2400);
 });
+
+/********************************************************
+ * SCREEN CONTROLS
+ ********************************************************/
+function openShop() {
+  scrollToTop();
+}
+
+function openSearch() {
+  document.getElementById("search-modal").style.display = "flex";
+}
+
+function closeSearch() {
+  document.getElementById("search-modal").style.display = "none";
+}
+
+/********************************************************
+ * SEARCH LOGIC
+ ********************************************************/
+function searchProducts(query) {
+  const results = document.getElementById("search-results");
+  results.innerHTML = "";
+
+  if (!query) return;
+
+  const q = query.toLowerCase();
+  const matches = products.filter(p =>
+    p.name.toLowerCase().includes(q)
+  );
+
+  matches.forEach(p => {
+    results.innerHTML += `
+      <div class="cart-item" onclick="openProduct('${p.name}','${p.price}','${p.img}')">
+        <img src="${p.img}" width="40">
+        <div>
+          <div>${p.name}</div>
+          <small>${p.price}</small>
+        </div>
+      </div>
+    `;
+  });
+}
