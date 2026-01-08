@@ -241,3 +241,19 @@ function checkoutTelegram() {
   updateCartCount();
   closeCart();
 }
+
+/********************************************************
+ * SPLASH SCREEN
+ ********************************************************/
+window.addEventListener("load", () => {
+  const splash = document.getElementById("splash");
+
+  setTimeout(() => {
+    splash.style.opacity = "0";
+    splash.style.transition = "opacity 0.6s ease";
+  }, 1800);
+
+  setTimeout(() => {
+    splash.style.display = "none";
+  }, 2400);
+});
