@@ -10,8 +10,8 @@
 
 <!-- TOP BAR -->
 <header class="top-bar">
-  <button class="menu-btn">☰</button>
-  <img src="logo.png" class="logo">
+  <button class="menu-btn" aria-label="Menu">☰</button>
+  <img src="logo.png" class="logo" alt="TAVEINE Logo" />
   <div class="spacer"></div>
 </header>
 
@@ -21,52 +21,103 @@
     <button class="close-menu" onclick="toggleMenu()">×</button>
   </div>
 
+  <!-- COLLECTION -->
   <div class="menu-block">
-    <div class="menu-title">Collections</div>
-    <div id="collections-list" class="submenu show"></div>
+    <div class="menu-title" onclick="toggleSub('collection')">
+      Collection <span id="icon-collection">+</span>
+    </div>
+    <div id="collection" class="submenu">
+      <a onclick="renderProducts('christmas','Christmas Collection')">Christmas Collection</a>
+      <a onclick="renderProducts('spring','Spring Collection')">Spring</a>
+      <a onclick="renderProducts('new-arrivals','New Arrivals')">New Arrivals</a>
+      <a onclick="renderProducts('best-sellers','Best Sellers')">Best Sellers</a>
+      <a onclick="renderProducts('luxury','Luxury')">Luxury</a>
+      <a onclick="renderProducts('specialty','Specialty')">Specialty</a>
+      <a onclick="renderProducts('jetaime','Je t’aime Collection')">Je t’aime Collection</a>
+      <a onclick="renderProducts('vases','Vases')">Vases</a>
+      <a onclick="renderProducts('box','Box Collection')">Box</a>
+    </div>
+  </div>
+
+  <!-- OCCASIONS -->
+  <div class="menu-block">
+    <div class="menu-title" onclick="toggleSub('occasions')">
+      Occasions <span id="icon-occasions">+</span>
+    </div>
+    <div id="occasions" class="submenu">
+      <a onclick="renderProducts('anniversary','Anniversary')">Anniversary</a>
+      <a onclick="renderProducts('birthday','Birthday')">Birthday</a>
+      <a onclick="renderProducts('sorry','I’m Sorry')">I’m Sorry</a>
+      <a onclick="renderProducts('new-baby','New Baby')">New Baby</a>
+    </div>
+  </div>
+
+  <!-- HOME -->
+  <div class="menu-block">
+    <div class="menu-title" onclick="toggleSub('home')">
+      Home <span id="icon-home">+</span>
+    </div>
+    <div id="home" class="submenu">
+      <a href="#">About Us</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Event Design Services</a>
+    </div>
   </div>
 </div>
 
+<!-- MAIN CONTENT (JS ПОДСТАВЛЯЕТ ТОВАРЫ) -->
 <main id="content">
+
+  <!-- HERO -->
   <section class="hero">
-    <img src="hero.jpg">
+    <img src="hero.jpg" alt="TAVEINE Hero">
   </section>
 
+  <!-- DEFAULT COLLECTION -->
   <section class="section">
-    <h2>Welcome to TAVÉINE</h2>
-    <p>Select a collection from the menu ☰</p>
+    <h2>Christmas Collection</h2>
+    <p style="padding:20px;opacity:.6">
+      Select a collection from menu ☰
+    </p>
   </section>
+
 </main>
 
 <!-- PRODUCT MODAL -->
 <div id="product-modal" class="modal">
   <div class="modal-content">
     <button class="close-btn" onclick="closeProduct()">×</button>
-    <img id="modal-img">
+    <img id="modal-img" alt="">
     <h2 id="modal-title"></h2>
     <p id="modal-price"></p>
-
     <button class="main-btn" onclick="addToCart()">Add to Cart</button>
-    <button class="crypto-btn" onclick="payCrypto()">Pay with Crypto</button>
   </div>
 </div>
 
-<!-- CART -->
+<!-- CART MODAL -->
 <div id="cart-modal" class="modal">
   <div class="modal-content">
     <button class="close-btn" onclick="closeCart()">×</button>
     <h2>Your Cart</h2>
     <div id="cart-items"></div>
+    <button class="main-btn" onclick="checkoutTelegram()">Checkout</button>
+  </div>
+</div>
 
-    <button class="main-btn" onclick="checkoutTelegram()">Pay via Telegram</button>
-    <button class="crypto-btn" onclick="payCrypto()">Pay with Crypto</button>
+<!-- WISHLIST MODAL -->
+<div id="wishlist-modal" class="modal">
+  <div class="modal-content">
+    <button class="close-btn" onclick="closeWishlist()">×</button>
+    <h2>Your Wishlist</h2>
+    <div id="wishlist-items"></div>
   </div>
 </div>
 
 <!-- BOTTOM NAV -->
 <nav class="bottom-nav">
   <button onclick="scrollToTop()">Shop</button>
-  <button onclick="openCart()">Cart (<span id="cart-count">0</span>)</button>
+  <button onclick="openWishlist()">Wishlist <span id="wishlist-count">(0)</span></button>
+  <button onclick="openCart()">Cart <span id="cart-count">(0)</span></button>
 </nav>
 
 <script src="script.js"></script>
