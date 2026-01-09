@@ -1,58 +1,47 @@
-/**************** CONFIG ****************/
-const SITE_URL = "https://taveine.com";
-const CK = "ck_120a4df77ad763e48ac07372e08af1eb48e40dcb";
-const CS = "cs_1bee08c5b8030a07cbd4b46a8c0edfa636bb4a44";
+// ================= CONFIG =================
+const API_URL = "https://taveine.com/wp-json/wc/v3/products";
+const CK = "ck_xxxxxxxxxxxxxxxxx";
+const CS = "cs_xxxxxxxxxxxxxxxxx";
 
-/**************** ELEMENTS ****************/
-const content = document.getElementById("content");
-const modal = document.getElementById("product-modal");
-const modalTitle = document.getElementById("modal-title");
-const modalPrice = document.getElementById("modal-price");
-const modalImg = document.getElementById("modal-img");
-
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-/**************** MENU ****************/
-function toggleMenu(){
+// ================= MENU =================
+function toggleMenu() {
   document.getElementById("side-menu").classList.toggle("active");
 }
-document.querySelector(".menu-btn").onclick = toggleMenu;
 
-/**************** LOAD CATEGORIES ****************/
-async function loadCategories(){
-  const res = await fetch(
-    `${SITE_URL}/wp-json/wc/v3/products/categories?per_page=50&consumer_key=${CK}&consumer_secret=${CS}`
-  );
-  const cats = await res.json();
+document.querySelector(".menu-btn").addEventListener("click", toggleMenu);
 
-  const list = document.getElementById("collections-list");
-  list.innerHTML = "";
+function toggleSub(id) {
+  const el = document.getElementById(id);
+  const icon = document.getElementById("icon-" + id);
 
-  cats.forEach(c=>{
-    if(c.count > 0){
-      list.innerHTML += `
-        <a onclick="loadProducts(${c.id},'${c.name}')">${c.name}</a>
-      `;
-    }
-  });
+  if (el.style.display === "block") {
+    el.style.display = "none";
+    icon.innerText = "+";
+  } else {
+    el.style.display = "block";
+    icon.innerText = "−";
+  }
 }
-loadCategories();
 
-/**************** LOAD PRODUCTS ****************/
-async function loadProducts(catId, title){
-  toggleMenu();
-  content.innerHTML = `<h2 style="padding:16px">${title}</h2>`;
+// ================= LOAD PRODUCTS FROM WP =================
+async function renderProducts(categorySlug, titleText) {
+  const container = document.getElementById("content");
+  container.innerHTML = `<p style="padding:20px">Loading...</p>`;
 
-  const res = await fetch(
-    `${SITE_URL}/wp-json/wc/v3/products?category=${catId}&per_page=50&consumer_key=${CK}&consumer_secret=${CS}`
-  );
+  const url = `${API_URL}?category=${categorySlug}&consumer_key=${CK}&consumer_secret=${CS}`;
+
+  const res = await fetch(url);
   const products = await res.json();
 
-  let html = `<section class="grid desktop-grid">`;
+  let html = `
+    <section class="section">
+      <h2>${titleText}</h2>
+      <div class="grid">
+  `;
 
-  products.forEach(p=>{
+  products.forEach(p => {
     html += `
-      <div class="product-card" onclick="openProduct('${p.name}','${p.price} AED','${p.images[0]?.src}')">
+      <div class="grid-card" onclick="openProduct('${p.name}','${p.price} AED','${p.images[0]?.src}')">
         <img src="${p.images[0]?.src}">
         <h4>${p.name}</h4>
         <span>${p.price} AED</span>
@@ -60,65 +49,63 @@ async function loadProducts(catId, title){
     `;
   });
 
-  html += `</section>`;
-  content.innerHTML += html;
+  html += `</div></section>`;
+  container.innerHTML = html;
+
+  toggleMenu();
+  window.scrollTo(0, 0);
 }
 
-/**************** PRODUCT ****************/
-function openProduct(t,p,i){
-  modalTitle.innerText=t;
-  modalPrice.innerText=p;
-  modalImg.src=i;
-  modal.style.display="flex";
-}
-function closeProduct(){ modal.style.display="none"; }
+// ================= PRODUCT MODAL =================
+const modal = document.getElementById("product-modal");
 
-/**************** CART ****************/
-function addToCart(){
+function openProduct(name, price, img) {
+  document.getElementById("modal-title").innerText = name;
+  document.getElementById("modal-price").innerText = price;
+  document.getElementById("modal-img").src = img;
+  modal.style.display = "flex";
+}
+
+function closeProduct() {
+  modal.style.display = "none";
+}
+
+// ================= CART =================
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function addToCart() {
   cart.push({
-    name: modalTitle.innerText,
-    price: modalPrice.innerText,
-    img: modalImg.src
+    name: document.getElementById("modal-title").innerText,
+    price: document.getElementById("modal-price").innerText
   });
+
   localStorage.setItem("cart", JSON.stringify(cart));
   updateCartCount();
-  alert("Added to cart");
+  alert("Added to cart 🌸");
 }
 
-function updateCartCount(){
-  document.getElementById("cart-count").innerText = cart.length;
+function updateCartCount() {
+  const el = document.getElementById("cart-count");
+  if (el) el.innerText = `(${cart.length})`;
 }
+
+function openCart() {
+  document.getElementById("cart-modal").style.display = "flex";
+}
+
+function closeCart() {
+  document.getElementById("cart-modal").style.display = "none";
+}
+
+// ================= TELEGRAM =================
+function checkoutTelegram() {
+  const tg = window.Telegram.WebApp;
+  tg.sendData(JSON.stringify(cart));
+  alert("Order sent to Telegram ✅");
+  cart = [];
+  localStorage.clear();
+  updateCartCount();
+  closeCart();
+}
+
 updateCartCount();
-
-function openCart(){
-  const list = document.getElementById("cart-items");
-  list.innerHTML = "";
-  cart.forEach(i=>{
-    list.innerHTML += `<div>${i.name} – ${i.price}</div>`;
-  });
-  document.getElementById("cart-modal").style.display="flex";
-}
-function closeCart(){
-  document.getElementById("cart-modal").style.display="none";
-}
-
-/**************** PAYMENTS ****************/
-function checkoutTelegram(){
-  if(!window.Telegram?.WebApp){
-    alert("Telegram not available");
-    return;
-  }
-  Telegram.WebApp.sendData(JSON.stringify({cart}));
-  alert("Order sent to Telegram");
-}
-
-function payCrypto(){
-  // пример: NOWPayments / Crypto invoice
-  const amount = cart.reduce((s,i)=>s+parseFloat(i.price),0);
-  window.open(`https://nowpayments.io/payment?amount=${amount}&currency=USDT`, "_blank");
-}
-
-/**************** UTIL ****************/
-function scrollToTop(){
-  window.scrollTo({top:0,behavior:"smooth"});
-}
