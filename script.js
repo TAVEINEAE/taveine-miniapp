@@ -1,314 +1,85 @@
-/********************************************************
- * ELEMENTS
- ********************************************************/
-const modal = document.getElementById("product-modal");
-const modalTitle = document.getElementById("modal-title");
-const modalPrice = document.getElementById("modal-price");
-const modalImg = document.getElementById("modal-img");
+const SITE_URL = "https://taveine.com";
+const CK = "ck_XXXX";
+const CS = "cs_XXXX";
 
 const content = document.getElementById("content");
 
-/********************************************************
- * MENU
- ********************************************************/
-function toggleMenu() {
-  document.getElementById("side-menu").classList.toggle("active");
+function toggleMenu(){document.getElementById("side-menu").classList.toggle("active")}
+document.querySelector(".menu-btn").onclick = toggleMenu;
+
+function toggleSub(id){
+  const el=document.getElementById(id);
+  el.style.display = el.style.display==="block"?"none":"block";
 }
 
-document.querySelector(".menu-btn")?.addEventListener("click", toggleMenu);
+function openProduct(t,p,i){
+  modalTitle.innerText=t;
+  modalPrice.innerText=p;
+  modalImg.src=i;
+  modal.style.display="flex";
+}
+function closeProduct(){modal.style.display="none"}
 
-function toggleSub(id) {
-  const block = document.getElementById(id);
-  const icon = document.getElementById("icon-" + id);
+function scrollToTop(){window.scrollTo({top:0,behavior:"smooth"})}
 
-  if (!block) return;
+// CART
+let cart=JSON.parse(localStorage.getItem("cart"))||[];
+function updateCart(){document.getElementById("cart-count").innerText=`(${cart.length})`}
+updateCart();
 
-  if (block.style.display === "block") {
-    block.style.display = "none";
-    if (icon) icon.innerText = "+";
-  } else {
-    block.style.display = "block";
-    if (icon) icon.innerText = "−";
-  }
+function addToCart(){
+  cart.push({name:modalTitle.innerText,price:modalPrice.innerText,img:modalImg.src});
+  localStorage.setItem("cart",JSON.stringify(cart));
+  updateCart();
 }
 
-/********************************************************
- * PRODUCT MODAL
- ********************************************************/
-function openProduct(title, price, img) {
-  modalTitle.innerText = title;
-  modalPrice.innerText = price;
-  modalImg.src = img;
-  modal.style.display = "flex";
+function openCart(){
+  const box=document.getElementById("cart-items");
+  box.innerHTML="";
+  cart.forEach(i=>box.innerHTML+=`<div class="cart-item"><img src="${i.img}"><div>${i.name}<br>${i.price}</div></div>`);
+  document.getElementById("cart-modal").style.display="flex";
+}
+function closeCart(){document.getElementById("cart-modal").style.display="none"}
+
+// WISHLIST
+let wishlist=JSON.parse(localStorage.getItem("wishlist"))||[];
+function openWishlist(){
+  const box=document.getElementById("wishlist-items");
+  box.innerHTML="";
+  wishlist.forEach(i=>box.innerHTML+=`<div class="cart-item"><img src="${i.img}"><div>${i.name}<br>${i.price}</div></div>`);
+  document.getElementById("wishlist-modal").style.display="flex";
+}
+function closeWishlist(){document.getElementById("wishlist-modal").style.display="none"}
+
+// SEARCH
+function openSearch(){document.getElementById("search-modal").style.display="flex"}
+function closeSearch(){document.getElementById("search-modal").style.display="none"}
+
+// WOOCOMMERCE
+async function fetchProducts(slug){
+  const res=await fetch(`${SITE_URL}/wp-json/wc/v3/products?category=${slug}&consumer_key=${CK}&consumer_secret=${CS}`);
+  return await res.json();
 }
 
-function closeProduct() {
-  modal.style.display = "none";
-}
-
-/********************************************************
- * SCROLL
- ********************************************************/
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-/********************************************************
- * CART
- ********************************************************/
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-function updateCartCount() {
-  const el = document.getElementById("cart-count");
-  if (el) el.innerText = `(${cart.length})`;
-}
-
-updateCartCount();
-
-function addToCart() {
-  cart.push({
-    name: modalTitle.innerText,
-    price: modalPrice.innerText,
-    img: modalImg.src
-  });
-
-  localStorage.setItem("cart", JSON.stringify(cart));
-  updateCartCount();
-  alert("Added to cart 🌸");
-}
-
-function openCart() {
-  const modalCart = document.getElementById("cart-modal");
-  const list = document.getElementById("cart-items");
-
-  list.innerHTML = "";
-
-  if (cart.length === 0) {
-    list.innerHTML = "<p>Your cart is empty</p>";
-  } else {
-    cart.forEach(item => {
-      list.innerHTML += `
-        <div class="cart-item">
-          <img src="${item.img}">
-          <div>
-            <div>${item.name}</div>
-            <small>${item.price}</small>
-          </div>
-        </div>
-      `;
-    });
-  }
-
-  modalCart.style.display = "flex";
-}
-
-function closeCart() {
-  document.getElementById("cart-modal").style.display = "none";
-}
-
-/********************************************************
- * WISHLIST
- ********************************************************/
-let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-
-function updateWishlistCount() {
-  const el = document.getElementById("wishlist-count");
-  if (el) el.innerText = `(${wishlist.length})`;
-}
-
-updateWishlistCount();
-
-function toggleWishlist(name, price, img, btn) {
-  const index = wishlist.findIndex(i => i.name === name);
-
-  if (index === -1) {
-    wishlist.push({ name, price, img });
-    btn?.classList.add("active");
-  } else {
-    wishlist.splice(index, 1);
-    btn?.classList.remove("active");
-  }
-
-  localStorage.setItem("wishlist", JSON.stringify(wishlist));
-  updateWishlistCount();
-}
-
-function openWishlist() {
-  const modalWish = document.getElementById("wishlist-modal");
-  const list = document.getElementById("wishlist-items");
-
-  list.innerHTML = "";
-
-  if (wishlist.length === 0) {
-    list.innerHTML = "<p>Your wishlist is empty</p>";
-  } else {
-    wishlist.forEach(item => {
-      list.innerHTML += `
-        <div class="cart-item">
-          <img src="${item.img}">
-          <div>
-            <div>${item.name}</div>
-            <small>${item.price}</small>
-          </div>
-        </div>
-      `;
-    });
-  }
-
-  modalWish.style.display = "flex";
-}
-
-function closeWishlist() {
-  document.getElementById("wishlist-modal").style.display = "none";
-}
-
-/********************************************************
- * PRODUCTS (LOCAL — ВРЕМЕННО)
- ********************************************************/
-const products = [
-  { name: "Snowfall Serenity", price: "620 AED", img: "p1.jpg", category: "christmas" },
-  { name: "Winter Harmony Bowl", price: "580 AED", img: "p2.jpg", category: "christmas" },
-  { name: "Golden Pine", price: "640 AED", img: "p3.jpg", category: "christmas" },
-  { name: "Evergreen Glow", price: "600 AED", img: "p4.jpg", category: "christmas" },
-
-  { name: "Pink Roses", price: "950 AED", img: "g1.jpg", category: "luxury" },
-  { name: "Ivory Roses", price: "950 AED", img: "g2.jpg", category: "luxury" },
-  { name: "Lilac Roses", price: "990 AED", img: "g3.jpg", category: "luxury" },
-  { name: "Rose Gold", price: "990 AED", img: "g4.jpg", category: "luxury" }
-];
-
-/********************************************************
- * RENDER COLLECTIONS
- ********************************************************/
-function renderProducts(category, title) {
-  const filtered = products.filter(p => p.category === category);
-
-  let html = `
-    <section class="section">
-      <h2>${title}</h2>
-      <div class="grid">
-  `;
-
-  if (filtered.length === 0) {
-    html += `<p style="padding:20px">No products found</p>`;
-  } else {
-    filtered.forEach(p => {
-      html += `
-        <div class="grid-card" onclick="openProduct('${p.name}','${p.price}','${p.img}')">
-          <img src="${p.img}" alt="${p.name}">
-          <h4>${p.name}</h4>
-          <span>${p.price}</span>
-        </div>
-      `;
-    });
-  }
-
-  html += `
-      </div>
-    </section>
-  `;
-
-  content.innerHTML = html;
+async function renderProducts(slug,title){
   toggleMenu();
-  scrollToTop();
-}
+  content.innerHTML=`<section class="section"><h2>${title}</h2><p>Loading…</p></section>`;
+  const products=await fetchProducts(slug);
 
-/********************************************************
- * TELEGRAM CHECKOUT
- ********************************************************/
-function checkoutTelegram() {
-  if (!window.Telegram || !window.Telegram.WebApp) {
-    alert("Telegram WebApp not found");
-    return;
-  }
-
-  if (cart.length === 0) {
-    alert("Cart is empty");
-    return;
-  }
-
-  const tg = window.Telegram.WebApp;
-
-  tg.sendData(JSON.stringify({
-    cart: cart,
-    items: cart.length
-  }));
-
-  alert("Order sent to Telegram ✅");
-
-  cart = [];
-  localStorage.removeItem("cart");
-  updateCartCount();
-  closeCart();
-}
-
-/********************************************************
- * SPLASH SCREEN
- ********************************************************/
-window.addEventListener("load", () => {
-  const splash = document.getElementById("splash");
-
-  setTimeout(() => {
-    splash.style.opacity = "0";
-    splash.style.transition = "opacity 0.6s ease";
-  }, 1800);
-
-  setTimeout(() => {
-    splash.style.display = "none";
-  }, 2400);
-});
-
-/********************************************************
- * SCREEN CONTROLS
- ********************************************************/
-function openShop() {
-  scrollToTop();
-}
-
-function openSearch() {
-  document.getElementById("search-modal").style.display = "flex";
-}
-
-function closeSearch() {
-  document.getElementById("search-modal").style.display = "none";
-}
-
-/********************************************************
- * SEARCH LOGIC
- ********************************************************/
-function searchProducts(query) {
-  const results = document.getElementById("search-results");
-  results.innerHTML = "";
-
-  if (!query) return;
-
-  const q = query.toLowerCase();
-  const matches = products.filter(p =>
-    p.name.toLowerCase().includes(q)
-  );
-
-  matches.forEach(p => {
-    results.innerHTML += `
-      <div class="cart-item" onclick="openProduct('${p.name}','${p.price}','${p.img}')">
-        <img src="${p.img}" width="40">
-        <div>
-          <div>${p.name}</div>
-          <small>${p.price}</small>
-        </div>
-      </div>
-    `;
+  let html=`<section class="section"><h2>${title}</h2><div class="grid">`;
+  products.forEach(p=>{
+    html+=`
+      <div class="grid-card" onclick="openProduct('${p.name}','${p.price} AED','${p.images[0]?.src||""}')">
+        <img src="${p.images[0]?.src||""}">
+        <h4>${p.name}</h4>
+        <span>${p.price} AED</span>
+      </div>`;
   });
+  html+=`</div></section>`;
+  content.innerHTML=html;
 }
 
-/********************************************************
- * SPLASH CONTROL — ОБЯЗАТЕЛЬНО
- ********************************************************/
-window.addEventListener("load", () => {
-  setTimeout(() => {
-    const splash = document.getElementById("splash");
-    const app = document.getElementById("app");
-
-    if (splash) splash.style.display = "none";
-    if (app) app.style.display = "block";
-  }, 1500); // 1.5 секунды
-});
+// TELEGRAM
+function checkoutTelegram(){
+  Telegram.WebApp.sendData(JSON.stringify(cart));
+}
