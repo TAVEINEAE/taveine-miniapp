@@ -6,6 +6,7 @@
   <title>TAVEINE Mini App</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
 <!-- SEARCH MODAL -->
@@ -27,18 +28,20 @@
 
 <!-- SIDE MENU -->
 <div id="side-menu" class="side-menu">
-  <button class="close-menu" onclick="toggleMenu()">×</button>
+  <div class="side-header">
+    <button class="close-menu" onclick="toggleMenu()">×</button>
+  </div>
 
   <div class="menu-block">
     <div class="menu-title" onclick="toggleSub('collection')">
       Collection <span id="icon-collection">+</span>
     </div>
     <div id="collection" class="submenu">
-      <a onclick="renderProducts('christmas','Christmas Collection')">Christmas</a>
-      <a onclick="renderProducts('luxury','Luxury Collection')">Luxury</a>
-      <a onclick="renderProducts('spring','Spring Collection')">Spring</a>
-      <a onclick="renderProducts('vases','Vases')">Vases</a>
-      <a onclick="renderProducts('box','Box Collection')">Box</a>
+      <a onclick="loadCategory(23,'Christmas Collection')">Christmas</a>
+      <a onclick="loadCategory(24,'Luxury')">Luxury</a>
+      <a onclick="loadCategory(25,'Spring')">Spring</a>
+      <a onclick="loadCategory(26,'Vases')">Vases</a>
+      <a onclick="loadCategory(27,'Box')">Box</a>
     </div>
   </div>
 </div>
@@ -71,25 +74,14 @@
     <button class="close-btn" onclick="closeCart()">×</button>
     <h2>Your Cart</h2>
     <div id="cart-items"></div>
-    <button class="main-btn" onclick="checkoutTelegram()">Checkout</button>
   </div>
 </div>
 
-<!-- WISHLIST -->
-<div id="wishlist-modal" class="modal">
-  <div class="modal-content">
-    <button class="close-btn" onclick="closeWishlist()">×</button>
-    <h2>Your Wishlist</h2>
-    <div id="wishlist-items"></div>
-  </div>
-</div>
-
-<!-- BOTTOM NAV -->
 <nav class="bottom-nav">
-  <button onclick="scrollToTop()">🏠<br><small>Shop</small></button>
-  <button onclick="openSearch()">🔍<br><small>Search</small></button>
-  <button onclick="openWishlist()">❤️<br><small>Wishlist <span id="wishlist-count">(0)</span></small></button>
-  <button onclick="openCart()">🛒<br><small>Cart <span id="cart-count">(0)</span></small></button>
+  <button onclick="scrollToTop()">Shop</button>
+  <button onclick="openSearch()">Search</button>
+  <button onclick="openWishlist()">Wishlist (<span id="wishlist-count">0</span>)</button>
+  <button onclick="openCart()">Cart (<span id="cart-count">0</span>)</button>
 </nav>
 
 <script src="script.js"></script>
