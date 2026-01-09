@@ -1,6 +1,6 @@
 const SITE_URL = "https://taveine.com";
-const CK = "ck_XXXX";
-const CS = "cs_XXXX";
+const CK = "ck_aa3a40a0b12d932e9bcaaeeaebd019f64e36f8eb";
+const CS = "cs_542e50200fa9fe2a515af6cc0fdf0ff15cc8fa65";
 
 const content = document.getElementById("content");
 
